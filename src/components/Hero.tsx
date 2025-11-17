@@ -57,7 +57,13 @@ const Hero = () => {
                                 <p className="text-white text-lg md:text-xl leading-base font-sans-medium">Let's make your website stand out</p>
                                 <p className="text-base md:text-lg text-grey leading-base font-sans-medium">How can we help you today?</p>
                                 <div className="">
-                                    <Button title="Schedule a meeting" onClick={() => {}} />
+                                    <Button 
+                                        title="Schedule a meeting" 
+                                        onClick={() => {
+                                            // Replace 'YOUR_CALENDLY_URL' with your actual Calendly scheduling link
+                                            window.open('https://calendly.com/YOUR_CALENDLY_URL', '_blank');
+                                        }} 
+                                    />
                                 </div>
                                 <p className="text-grey text-sm md:text-lg leading-base">
                                     Mail me at:{" "} 
@@ -108,7 +114,7 @@ type ThumbnailProps = {
     project_description: string;
 }
 
-const Thumbnail = ({ 
+export const Thumbnail = ({ 
     image_url, 
     project_url, 
     project_name,
@@ -117,7 +123,7 @@ const Thumbnail = ({
 }: ThumbnailProps) => {
     return (
         <motion.div 
-            className="thumbnail py-6"
+            className="thumbnail py-6 bg-card rounded-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -133,10 +139,10 @@ const Thumbnail = ({
                     <img 
                         src={image_url} 
                         alt={project_name} 
-                        className="w-auto h-full object-cover" 
+                        className="w-auto h-full object-cover hidden" 
                     />
 
-                    <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />
+                    {/* <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" /> */}
 
                     <motion.div 
                         className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-3 md:p-4 z-50"

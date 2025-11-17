@@ -46,41 +46,41 @@ const Navbar = () => {
 
     return (
         <div className="header">
-            <div className="container mx-auto p-4">
-            <div className="flex items-center justify-between">
-                <div className="logo cursor-pointer transition-all duration-300 hover:scale-105">
-                    <h4 className="text-white text-2xl font-bold font-mono tracking-tight select-none">
-                        <span className="text-grey opacity-70">{"</"}</span>
-                        <span className="text-white font-semibold">EA10</span>
-                        <span className="text-grey opacity-70">{">"}</span>
-                    </h4>
-                </div>
+            <div className="container mx-auto py-4 px-4 md:px-[60px]">
+                <div className="flex items-center justify-between">
+                    <div className="logo cursor-pointer transition-all duration-300 hover:scale-105">
+                        <h4 className="text-white text-2xl font-bold font-mono tracking-tight select-none">
+                            <span className="text-grey opacity-70">{"</"}</span>
+                            <span className="text-white font-semibold">EA10</span>
+                            <span className="text-grey opacity-70">{">"}</span>
+                        </h4>
+                    </div>
 
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <NavLinks 
-                            url={link.href} 
-                            label={link.label} 
-                            key={link.label}
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-8">
+                        {navLinks.map((link) => (
+                            <NavLinks 
+                                url={link.href} 
+                                label={link.label} 
+                                key={link.label}
+                            />
+                        ))}
+
+                        <Button 
+                            title="Contact"
+                            onClick={() => {}}
                         />
-                    ))}
+                    </div>
 
-                    <Button 
-                        title="Contact us"
-                        onClick={() => {}}
-                    />
+                    {/* Mobile Menu Button */}
+                    <div
+                        onClick={toggleMenu}
+                        className="md:hidden text-white text-2xl focus:outline-none"
+                        aria-label="Toggle menu"
+                    >
+                        <HiMenu size={28} />
+                    </div>
                 </div>
-
-                {/* Mobile Menu Button */}
-                <div
-                    onClick={toggleMenu}
-                    className="md:hidden text-white text-2xl focus:outline-none"
-                    aria-label="Toggle menu"
-                >
-                    <HiMenu size={28} />
-                </div>
-            </div>
             </div>
 
             {/* Mobile Sidebar */}
@@ -141,7 +141,7 @@ const Navbar = () => {
                                         className="mt-4"
                                     >
                                         <Button 
-                                            title="Contact us"
+                                            title="Contact"
                                             onClick={() => {
                                                 closeMenu();
                                             }}

@@ -1,5 +1,5 @@
 import "./App.css";
-import { Hero, Services } from "./components";
+import { Hero, Services, Projects } from "./components";
 import { Navbar, Footer } from "./layouts";
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
       <Navbar />
       <Hero />
       <Services />
+      <Projects />
       <Footer />
     </div>
   )

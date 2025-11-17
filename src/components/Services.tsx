@@ -15,7 +15,7 @@ const Services = () => {
                     </div>
 
                     <div className="flex items-center justify-center gap-12">
-                        <div className="relative max-w-6xl mx-auto">
+                        <div className="relative  mx-auto">
                             {/* Connection Lines */}
                             <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-white to-transparent transform -translate-y-1/2 z-0"></div>
                             

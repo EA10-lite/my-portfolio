@@ -6,12 +6,16 @@ type ProjectProps = {
     project_url: string;
     project_name: string;
     project_description: string;
+    project_short_summary?: string;
+    tags?: string[];
 }
 
 export const projects: ProjectProps[] = [
     {
         id: 1,
+        tags: ["Frontend", "Backend", "Database"],
         project_name: "Factpointer",
+        project_short_summary: "Verify facts with Factpointer",
         project_description: "Factpointer is a fact verifying platform that allows you to find the truth about anything.",
         project_url: "https://factpointer-five.vercel.app/",
         image_url: "/images/factpointer-thumbnail.png",
@@ -19,6 +23,8 @@ export const projects: ProjectProps[] = [
     {
         id: 2, 
         project_name: "ProposelyAI",
+        project_short_summary: "Win More Upwork Projects with AI",
+        tags: ["Frontend", "Backend", "Supabase"],
         project_description: "Generate compelling, personalized proposals in seconds using our fine-tuned AI model trained on thousands of successful Upwork proposals.",
         project_url: "https://proposelyai.com/",
         image_url: "/images/proposelyai-thumbnail.png",
@@ -26,6 +32,8 @@ export const projects: ProjectProps[] = [
     {
         id: 3, 
         project_name: "Binatec Agency",
+        project_short_summary: "Digital Marketing Agency",
+        tags: ["Frontend", "Backend", "Database"],
         project_description: "Binatec is a premier digital agency dedicated to helping businesses succeed in the ever-evolving world of digital marketing.",
         project_url: "https://binatecagency.com/",
         image_url: "/images/binatec-thumbnail.png",
