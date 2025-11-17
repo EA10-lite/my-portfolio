@@ -13,7 +13,7 @@ const Button = ({
 }: ButtonProps) => {
     return (
         <button 
-            className={`bg-primary text-white px-8 py-2 shadow rounded-[35px] ${className}`}
+            className={`bg-primary text-white px-8 py-2.5 shadow rounded-[35px] ${className}`}
             onClick={onClick}
         >
             <span className="text-sm font-medium">{title}</span>

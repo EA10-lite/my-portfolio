@@ -12,14 +12,14 @@ export const projects: ProjectProps[] = [
     {
         id: 1,
         project_name: "Factpointer",
-        project_description: "Factpointer is a platform that allows you to find the truth about anything.",
+        project_description: "Factpointer is a fact verifying platform that allows you to find the truth about anything.",
         project_url: "https://factpointer-five.vercel.app/",
         image_url: "/images/factpointer-thumbnail.png",
     },
     {
         id: 2, 
         project_name: "ProposelyAI",
-        project_description: "Win More Upwork Projects with AI Generate compelling, personalized proposals in seconds using our fine-tuned AI model trained on thousands of successful Upwork proposals.",
+        project_description: "Generate compelling, personalized proposals in seconds using our fine-tuned AI model trained on thousands of successful Upwork proposals.",
         project_url: "https://proposelyai.com/",
         image_url: "/images/proposelyai-thumbnail.png",
     },
@@ -40,7 +40,7 @@ export const projects: ProjectProps[] = [
     {
         id: 5, 
         project_name: "360Comms",
-        project_description: "360 Comms specializes in the production of Advertisements, Corporates, Documentary films, Shorts and Feature films, TV Commercials and Social Media.",
+        project_description: "360 Comms specializes in the production of Advertisements, Corporates, Documentary films, TV Commercials and Social Media.",
         project_url: "https://360comms.network/",
         image_url: "/images/360comms-thumbnail.png",
     },

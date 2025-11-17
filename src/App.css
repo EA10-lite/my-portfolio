@@ -54,11 +54,50 @@ body {
 }
 
 button {
-  box-shadow: 1px 1px 4px #e6be87;
+  /* Background glow - always visible */
+  box-shadow: 0 0 20px rgba(230, 190, 135, 0.4);
+  position: relative;
+  border: 1px solid transparent;
 }
 button:hover {
   scale: 1.05;
   transition: all 0.3s ease-in-out;
+  /* Full border on hover - stops rotation */
+  animation: none;
+  border: 2px solid #e6be87;
+  box-shadow: 0 0 20px rgba(230, 190, 135, 0.4);
+}
+
+/* Rotating border animation - creates a border segment that rotates around button */
+/* Uses box-shadow to create a visible border line that moves around */
+@keyframes rotate-border {
+  0% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), 0 -1px 0 0.5px #e6be87, 0 -2px 0 0.5px #e6be87, 0 -3px 0 0.5px #e6be87; /* Top border */
+  }
+  12.5% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), 1.41px -1.41px 0 0.5px #e6be87, 2.12px -2.12px 0 0.5px #e6be87, 2.83px -2.83px 0 0.5px #e6be87; /* Top-right */
+  }
+  25% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), 1px 0 0 0.5px #e6be87, 2px 0 0 0.5px #e6be87, 3px 0 0 0.5px #e6be87; /* Right border */
+  }
+  37.5% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), 1.41px 1.41px 0 0.5px #e6be87, 2.12px 2.12px 0 0.5px #e6be87, 2.83px 2.83px 0 0.5px #e6be87; /* Bottom-right */
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), 0 1px 0 0.5px #e6be87, 0 2px 0 0.5px #e6be87, 0 3px 0 0.5px #e6be87; /* Bottom border */
+  }
+  62.5% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), -1.41px 1.41px 0 0.5px #e6be87, -2.12px 2.12px 0 0.5px #e6be87, -2.83px 2.83px 0 0.5px #e6be87; /* Bottom-left */
+  }
+  75% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), -1px 0 0 0.5px #e6be87, -2px 0 0 0.5px #e6be87, -3px 0 0 0.5px #e6be87; /* Left border */
+  }
+  87.5% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), -1.41px -1.41px 0 0.5px #e6be87, -2.12px -2.12px 0 0.5px #e6be87, -2.83px -2.83px 0 0.5px #e6be87; /* Top-left */
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(230, 190, 135, 0.4), 0 -1px 0 0.5px #e6be87, 0 -2px 0 0.5px #e6be87, 0 -3px 0 0.5px #e6be87; /* Back to top */
+  }
 }
 
 .framer-text {
@@ -100,8 +139,9 @@ button:hover {
   display: flex;
   gap: 2rem; /* gap-8 equivalent */
   width: fit-content;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 100s linear infinite;
   will-change: transform;
+  padding: 2rem 0; /* Add vertical padding to prevent clipping when thumbnails scale */
 }
 
 /* Keyframe animation for continuous scrolling */
@@ -117,14 +157,14 @@ button:hover {
 
 /* Thumbnail box with hover scale effect */
 .thumbnail-box {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 400ms ease-in-out;
   transform-origin: center;
 }
 
 /* Scale effect on hover - continues scrolling while scaling */
 .thumbnail-box:hover {
   transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 400ms ease-in-out;
 }
 
 @media (prefers-color-scheme: light) {

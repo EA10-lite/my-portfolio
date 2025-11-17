@@ -1,5 +1,6 @@
 import Button from "./Button";
 import { projects } from "../data/projects";
+import { IoArrowForward } from "react-icons/io5";
 
 const Hero = () => {
     return (
@@ -49,13 +50,6 @@ const Hero = () => {
                                 {...project}
                             />
                         ))}
-                        {/* Duplicate set for seamless loop */}
-                        {projects.map((project: ThumbnailProps) => (
-                            <Thumbnail 
-                                key={`duplicate-${project.id}`} 
-                                {...project}
-                            />
-                        ))}
                     </div>
                 </div>
             </div>
@@ -79,13 +73,35 @@ const Thumbnail = ({
     
 }: ThumbnailProps) => {
     return (
-        <div className="thumbnail">
+        <div className="thumbnail py-6">
             <a 
                 href={project_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="h-[520px] block thumbnail-box relative rounded-lg overflow-hidden w-[600px] border-grey border"
+                className="h-[520px] block thumbnail-box relative rounded-lg overflow-hidden min-w-[724px]"
             >
+                <div className="h-full">
+                    <img 
+                        src={image_url} 
+                        alt={project_name} 
+                        className="w-auto h-full object-cover" 
+                    />
+
+                    <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />
+
+
+                    <div className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-4 z-50">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="bg-white px-4 py-1.5 rounded-[35px]">
+                                <h4 className="text-sm font-sans-semibold">{project_name}</h4>
+                            </div>
+
+                            <IoArrowForward size={20} />
+                        </div>
+
+                        <p>{project_description}</p>
+                    </div>
+                </div>
             </a>
         </div>
     )
