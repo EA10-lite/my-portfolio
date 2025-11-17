@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import Button from "./Button";
 import { projects } from "../data/projects";
 import { IoArrowForward } from "react-icons/io5";
@@ -34,7 +35,7 @@ const Hero = () => {
                 <div className="hero-text-content mb-10 md:mb-[80px]">
                     <div className="py-8 px-4 md:py-[80px] md:px-[60px]">
                         <motion.div 
-                            className="flex items-center justify-between flex-wrap gap-8"
+                            className="flex items-center justify-between flex-wrap gap-16 md:gap-8"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
@@ -83,7 +84,13 @@ const Hero = () => {
             </div>
 
             <div className="hero-image-content">
-                <div className="marquee-container">
+                {/* Mobile Slider - shows one at a time, auto-advances */}
+                <div className="mobile-slider-container md:hidden">
+                    <MobileSlider />
+                </div>
+
+                {/* Desktop Marquee - horizontal infinite scroll */}
+                <div className="marquee-container hidden md:block">
                     <div className="marquee-track">
                         {/* First set of thumbnails */}
                         {projects.map((project: ThumbnailProps) => (
@@ -105,6 +112,76 @@ const Hero = () => {
         </div>
     )
 }
+
+// Mobile Slider Component - auto-advancing carousel
+const MobileSlider = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Auto-advance slider every 4 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => 
+                prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 4000); // Change slide every 4 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
+    // Animation variants for slide transitions
+    const slideVariants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 300 : -300,
+            opacity: 0,
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+        },
+        exit: (direction: number) => ({
+            x: direction < 0 ? 300 : -300,
+            opacity: 0,
+        }),
+    };
+
+    return (
+        <div className="relative w-full overflow-hidden">
+            <AnimatePresence mode="wait" custom={1}>
+                <motion.div
+                    key={currentIndex}
+                    custom={1}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                    }}
+                    className="w-full px-4"
+                >
+                    <Thumbnail {...projects[currentIndex]} />
+                </motion.div>
+            </AnimatePresence>
+
+            {/* Dots indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+                {projects.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setCurrentIndex(index)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                            index === currentIndex 
+                                ? 'w-8 bg-white' 
+                                : 'w-2 bg-white/40'
+                        }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
 
 type ThumbnailProps = {
     id: number;
@@ -133,13 +210,13 @@ export const Thumbnail = ({
                 href={project_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden min-w-[95vw] sm:min-w-[480px] md:min-w-[550px] lg:min-w-[724px]"
+                className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden w-full md:min-w-[550px] lg:min-w-[724px]"
             >
                 <div className="h-full">
                     <img 
                         src={image_url} 
                         alt={project_name} 
-                        className="w-auto h-full object-cover" 
+                        className="w-full h-full object-cover" 
                     />
 
                     <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />

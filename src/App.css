@@ -169,6 +169,13 @@ button:hover {
   transition: transform 400ms ease-in-out;
 }
 
+/* Mobile slider container */
+.mobile-slider-container {
+  width: 100%;
+  padding: 1rem 0;
+  overflow: hidden;
+}
+
 /* Mobile responsiveness for marquee */
 @media (max-width: 768px) {
   .marquee-track {
