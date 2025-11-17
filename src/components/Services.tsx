@@ -22,10 +22,10 @@ const Services = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 relative z-10">
                                 
                                 {/* Step 1 */}
-                                <div className="group relative bg-card backdrop-blur-md border border-white rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[340px] sm:min-h-[400px] text-white">
+                                <div className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[340px] sm:min-h-[400px] text-white">
                                     {/* Step Number */}
                                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                                        <div className="w-12 h-12 bg-card border border-white  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                        <div className="w-12 h-12 bg-card border border-card  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                                             01
                                         </div>
                                     </div>
@@ -71,10 +71,10 @@ const Services = () => {
                                 </div>
 
                                 {/* Step 2 */}
-                                <div className="group relative bg-card backdrop-blur-md border border-white rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white">
+                                <div className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white">
                                     {/* Step Number */}
                                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                                        <div className="w-12 h-12 bg-card border border-white  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                        <div className="w-12 h-12 bg-card border border-card  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                                             02
                                         </div>
                                     </div>
@@ -119,10 +119,10 @@ const Services = () => {
                                 </div>
 
                                 {/* Step 3 */}
-                                <div className="group relative bg-card backdrop-blur-md border border-white rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white">
+                                <div className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white">
                                     {/* Step Number */}
                                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                                        <div className="w-12 h-12 bg-card border border-white  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                        <div className="w-12 h-12 bg-card border border-card  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                                             03
                                         </div>
                                     </div>
