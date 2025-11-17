@@ -1,28 +1,97 @@
 import { FaBrain } from "react-icons/fa";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Services = () => {
+    // Ref for scroll-triggered animations
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    // Animation variants for the container
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    // Animation variants for header
+    const headerVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: [0.4, 0, 0.2, 1] as const,
+            },
+        },
+    };
+
+    // Animation variants for service cards
+    const cardVariants = {
+        hidden: { opacity: 0, y: 40 },
+        visible: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.7,
+                delay: i * 0.2,
+                ease: [0.4, 0, 0.2, 1] as const,
+            },
+        }),
+    };
+
     return (
-        <div className="services mb-20">
+        <div className="services mb-20" ref={ref}>
             <div className="container mx-auto">
                 <div className="services-content py-8 px-4 md:py-[80px] md:px-[60px]">
-                    <div className="max-w-[600px] mx-auto mb-8 text-center">
+                    <motion.div 
+                        className="max-w-[600px] mx-auto mb-8 text-center"
+                        variants={headerVariants}
+                        initial="hidden"
+                        animate={isInView ? "visible" : "hidden"}
+                    >
                         <h2 className="text-3xl md:text-4xl lg:text-[44px] leading-[108%] text-white font-sans-semibold mb-4">
                             What I do ?
                         </h2>
                         <p className="text-base md:text-lg lg:text-2xl leading-[120%] text-grey font-sans-medium">
                             Turning ideas into production-ready apps with clean code and great UX.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="flex items-center justify-center gap-12">
+                    <motion.div 
+                        className="flex items-center justify-center gap-12"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={isInView ? "visible" : "hidden"}
+                    >
                         <div className="relative  mx-auto">
                             {/* Connection Lines */}
-                            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-white to-transparent transform -translate-y-1/2 z-0"></div>
+                            <motion.div 
+                                className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-white to-transparent transform -translate-y-1/2 z-0"
+                                initial={{ scaleX: 0 }}
+                                animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                                transition={{ duration: 1, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                                style={{ transformOrigin: "left" }}
+                            ></motion.div>
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 relative z-10">
                                 
                                 {/* Step 1 */}
-                                <div className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[340px] sm:min-h-[400px] text-white">
+                                <motion.div 
+                                    className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[340px] sm:min-h-[400px] text-white"
+                                    custom={0}
+                                    variants={cardVariants}
+                                    initial="hidden"
+                                    animate={isInView ? "visible" : "hidden"}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    transition={{ duration: 0.3 }}
+                                >
                                     {/* Step Number */}
                                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                                         <div className="w-12 h-12 bg-card border border-card  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -68,10 +137,18 @@ const Services = () => {
                                     <p className="text-muted-foreground leading-relaxed text-sm">
                                         Deliver polished, production-ready websites and web apps with responsive, scalable designs that provide real-time performance, seamless UX, and measurable impact.
                                     </p>
-                                </div>
+                                </motion.div>
 
                                 {/* Step 2 */}
-                                <div className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white">
+                                <motion.div 
+                                    className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white"
+                                    custom={1}
+                                    variants={cardVariants}
+                                    initial="hidden"
+                                    animate={isInView ? "visible" : "hidden"}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    transition={{ duration: 0.3 }}
+                                >
                                     {/* Step Number */}
                                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                                         <div className="w-12 h-12 bg-card border border-card  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -116,10 +193,18 @@ const Services = () => {
                                     <p className="text-muted-foreground leading-relaxed text-sm">
                                         Build robust, secure, and scalable backend systems that power your applications, streamline workflows, and provide real-time data and actionable insights.
                                     </p>
-                                </div>
+                                </motion.div>
 
                                 {/* Step 3 */}
-                                <div className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white">
+                                <motion.div 
+                                    className="group relative bg-card backdrop-blur-md border border-card rounded-2xl p-4 sm:p-8 text-center hover:scale-105 transition-all duration-500 flex flex-col justify-center items-center min-h-[400px] text-white"
+                                    custom={2}
+                                    variants={cardVariants}
+                                    initial="hidden"
+                                    animate={isInView ? "visible" : "hidden"}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    transition={{ duration: 0.3 }}
+                                >
                                     {/* Step Number */}
                                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                                         <div className="w-12 h-12 bg-card border border-card  rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -165,10 +250,10 @@ const Services = () => {
                                     <p className="text-muted-foreground leading-relaxed text-sm">
                                         Create intuitive, high-performance mobile apps that engage users, deliver smooth experiences, and drive productivity through real-time, reliable functionality.
                                     </p>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>

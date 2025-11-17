@@ -1,0 +1,70 @@
+/**
+ * Button component styles with animated glowing border effect.
+ * 
+ * The glow effect is achieved using a rotating conic gradient border animation.
+ * On hover, the animation pauses and the border becomes more prominent.
+ */
+
+.button-glow {
+  /* Base button styling */
+  position: relative;
+  background-color: var(--color-primary, #05061a);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* Animated gradient border using pseudo-element with conic gradient */
+.button-glow-border {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    #d4a574,
+    #b8860b,
+    #daa520,
+    #cd853f,
+    #d4a574
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: glow-rotate 3s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Rotating conic gradient animation */
+@keyframes glow-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pause animation and show solid border on hover */
+.button-glow:hover .button-glow-border {
+  animation-play-state: paused;
+  background: #d4a574;
+  -webkit-mask: none;
+  mask: none;
+}
+
+/* Add visible border and glow on hover */
+.button-glow:hover {
+  border-color: #d4a574;
+  box-shadow: 0 0 20px rgba(212, 165, 116, 0.5);
+}
+
+/* Ensure button content stays above the border */
+.button-glow > span:last-child {
+  position: relative;
+  z-index: 1;
+}
+
