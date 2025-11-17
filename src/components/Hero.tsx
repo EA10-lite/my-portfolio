@@ -142,10 +142,10 @@ export const Thumbnail = ({
                         className="w-auto h-full object-cover" 
                     />
 
-                    {/* <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" /> */}
+                    <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />
 
                     <motion.div 
-                        className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-3 md:p-4 z-50"
+                        className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-3 md:p-4 z-99"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.5 }}
