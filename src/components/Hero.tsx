@@ -214,7 +214,7 @@ export const Thumbnail = ({
                     className="w-full h-full object-cover" 
                 />
 
-                <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />
+                {/* <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" /> */}
 
                 {disableAnimations ? (
                     <div className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-3 md:p-4 z-99">
