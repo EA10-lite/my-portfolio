@@ -1,13 +1,14 @@
 
 
-export default function About() {
+const About = () => {
+
     return (
-        <div className="about">
+        <div className="about" id="about">
             <div className="container mx-auto">
-                <div className="py-[80px] px-[60px]">
-                    <h4>Whoami?</h4>
-                </div>
+
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default About;

@@ -29,7 +29,7 @@ const Hero = () => {
     };
 
     return (
-        <div className="app-hero">
+        <div className="app-hero mt-10 mb-20">
             <div className="container mx-auto">
                 <div className="hero-text-content mb-10 md:mb-[80px]">
                     <div className="py-8 px-4 md:py-[80px] md:px-[60px]">
@@ -83,6 +83,13 @@ const Hero = () => {
                         {projects.map((project: ThumbnailProps) => (
                             <Thumbnail 
                                 key={project.id} 
+                                {...project}
+                            />
+                        ))}
+                        {/* Duplicate set for seamless infinite scroll */}
+                        {projects.map((project: ThumbnailProps) => (
+                            <Thumbnail 
+                                key={`duplicate-${project.id}`} 
                                 {...project}
                             />
                         ))}

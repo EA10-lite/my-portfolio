@@ -1,5 +1,5 @@
 import "./App.css";
-import { About, Hero } from "./components";
+import { Hero, Services } from "./components";
 import { Navbar, Footer } from "./layouts";
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
       {/* Header */}
       <Navbar />
       <Hero />
-      <About />
+      <Services />
       <Footer />
     </div>
   )

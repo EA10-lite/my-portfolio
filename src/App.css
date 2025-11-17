@@ -33,6 +33,7 @@
 
 
 @theme {
+  /* Existing custom colors */
   --color-primary: #05061a;
   --color-grey: #9999a1;
   --color-white: #fdfdfd;
@@ -139,7 +140,7 @@ button:hover {
   display: flex;
   gap: 2rem; /* gap-8 equivalent */
   width: fit-content;
-  animation: marquee-scroll 100s linear infinite;
+  animation: marquee-scroll 60s linear infinite;
   will-change: transform;
   padding: 2rem 0; /* Add vertical padding to prevent clipping when thumbnails scale */
 }
@@ -179,7 +180,4 @@ button:hover {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-  }
-}
+/* Light mode styles can be added here if needed */
