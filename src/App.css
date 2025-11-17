@@ -167,6 +167,18 @@ button:hover {
   transition: transform 400ms ease-in-out;
 }
 
+/* Mobile responsiveness for marquee */
+@media (max-width: 768px) {
+  .marquee-track {
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  .hero-image-content {
+    padding: 5px;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
   }

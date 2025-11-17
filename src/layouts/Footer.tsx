@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { Button } from "../components";
+import { Button, Logo } from "../components";
 
 
 const links = [
@@ -39,26 +39,23 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="container mx-auto">
-                <div className="py-[40px] px-[60px]">
-                    <div className="">
-                        <h2 className="text-[60px] leading-[108%] text-white font-sans-semibold"> Do you have an idea? </h2>
-                        <h2 className="text-[60px] leading-[108%] text-white font-sans-semibold"> Let's Talk!</h2>
+                <div className="py-6 px-4 md:py-[40px] md:px-[60px]">
+                    {/* Header Section */}
+                    <div className="mb-6 md:mb-0">
+                        <h2 className="text-3xl md:text-[60px] leading-[108%] text-white font-sans-semibold"> Do you have an idea? </h2>
+                        <h2 className="text-3xl md:text-[60px] leading-[108%] text-white font-sans-semibold"> Let's Talk!</h2>
                     </div>
-                    <div className="divider w-full h-[1px] my-[40px]" />
+                    <div className="divider w-full h-[1px] my-6 md:my-[40px]" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-3">
+                    {/* Main Content Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
+                        {/* Left Section - Logo, Description, Social Links */}
                         <div className="col-span-1 md:col-span-2 flex flex-col gap-4">
-                            <div className="logo cursor-pointer transition-all duration-300 hover:scale-105">
-                                <h4 className="text-white text-2xl font-bold font-mono tracking-tight select-none">
-                                    <span className="text-grey opacity-70">{"</"}</span>
-                                    <span className="text-white font-semibold">EA10</span>
-                                    <span className="text-grey opacity-70">{">"}</span>
-                                </h4>
-                            </div>
+                            <Logo />
 
                             <div className="">
-                                <p className="text-white text-lg font-sans-semibold">Get In touch Let's Create Something Amazing Together</p>
-                                <p className="text-grey text-base font-sans-medium">You can find me on the following platforms </p>
+                                <p className="text-white text-base md:text-lg font-sans-semibold">Get In touch Let's Create Something Amazing Together</p>
+                                <p className="text-grey text-sm md:text-base font-sans-medium">You can find me on the following platforms </p>
                             </div>
 
                             <div className="flex items-center gap-4">
@@ -72,9 +69,10 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-1 grid grid-cols-2 gap-4">
+                        {/* Right Section - Links and Contact Button */}
+                        <div className="col-span-1 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-4">
                             <div className="">
-                                <div className="flex flex-col gap-6">
+                                <div className="flex flex-col gap-4 md:gap-6">
                                     {links.map((link) => (
                                         <Links 
                                             url={link.href} 
@@ -85,22 +83,23 @@ const Footer = () => {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-6">
+                            <div className="flex flex-col gap-4 md:gap-6">
                                 <div className="">
                                     <Button 
                                         title="Contact us"
                                         onClick={() => {}}
                                     />
                                 </div>
-                                <p className="text-grey text-sm font-medium">Turn your idea into a reality</p>
+                                <p className="text-grey text-xs md:text-sm font-medium">Turn your idea into a reality</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="divider w-full h-[1px] my-[40px]" />
+                    <div className="divider w-full h-[1px] my-6 md:my-[40px]" />
 
+                    {/* Copyright */}
                     <div className="">
-                        <p className="text-grey text-sm font-medium">© 2025 EA10. All rights reserved.</p>
+                        <p className="text-grey text-xs md:text-sm font-medium text-center md:text-left">© 2025 EA10. All rights reserved.</p>
                     </div>
                 </div>
             </div>
