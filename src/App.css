@@ -165,7 +165,7 @@ button:hover {
 
 /* Scale effect on hover - continues scrolling while scaling */
 .thumbnail-box:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: transform 400ms ease-in-out;
 }
 

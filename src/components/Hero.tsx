@@ -123,7 +123,7 @@ export const Thumbnail = ({
 }: ThumbnailProps) => {
     return (
         <motion.div 
-            className="thumbnail py-6 bg-card rounded-lg"
+            className="thumbnail py-6"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -133,13 +133,13 @@ export const Thumbnail = ({
                 href={project_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden min-w-[280px] sm:min-w-[400px] md:min-w-[550px] lg:min-w-[724px]"
+                className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden min-w-[95vw] sm:min-w-[480px] md:min-w-[550px] lg:min-w-[724px]"
             >
                 <div className="h-full">
                     <img 
                         src={image_url} 
                         alt={project_name} 
-                        className="w-auto h-full object-cover hidden" 
+                        className="w-auto h-full object-cover" 
                     />
 
                     {/* <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" /> */}
