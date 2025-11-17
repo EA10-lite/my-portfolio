@@ -130,42 +130,43 @@ const MobileSlider = () => {
 
     // Animation variants for slide transitions
     const slideVariants = {
-        enter: (direction: number) => ({
-            x: direction > 0 ? 300 : -300,
+        enter: {
+            x: '100%',
             opacity: 0,
-        }),
+        },
         center: {
             x: 0,
             opacity: 1,
         },
-        exit: (direction: number) => ({
-            x: direction < 0 ? 300 : -300,
+        exit: {
+            x: '-100%',
             opacity: 0,
-        }),
+        },
     };
 
     return (
         <div className="relative w-full overflow-hidden">
-            <AnimatePresence mode="wait" custom={1}>
-                <motion.div
-                    key={currentIndex}
-                    custom={1}
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 },
-                    }}
-                    className="w-full px-4"
-                >
-                    <Thumbnail {...projects[currentIndex]} />
-                </motion.div>
-            </AnimatePresence>
+            <div className="relative w-full" style={{ minHeight: '300px' }}>
+                <AnimatePresence initial={false}>
+                    <motion.div
+                        key={currentIndex}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            x: { type: "tween", duration: 0.5, ease: "easeInOut" },
+                            opacity: { duration: 0.3 },
+                        }}
+                        className="absolute inset-0 w-full px-4"
+                    >
+                        <Thumbnail {...projects[currentIndex]} disableAnimations={true} />
+                    </motion.div>
+                </AnimatePresence>
+            </div>
 
             {/* Dots indicator */}
-            <div className="flex justify-center gap-2 mt-4">
+            <div className="flex justify-center gap-2 mt-8">
                 {projects.map((_, index) => (
                     <button
                         key={index}
@@ -189,6 +190,7 @@ type ThumbnailProps = {
     project_url: string;
     project_name: string;
     project_description: string;
+    disableAnimations?: boolean;
 }
 
 export const Thumbnail = ({ 
@@ -196,31 +198,37 @@ export const Thumbnail = ({
     project_url, 
     project_name,
     project_description,
-    
+    disableAnimations = false,
 }: ThumbnailProps) => {
-    return (
-        <motion.div 
-            className="thumbnail py-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.02 }}
+    const thumbnailContent = (
+        <a 
+            href={project_url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden w-full md:min-w-[550px] lg:min-w-[724px]"
         >
-            <a 
-                href={project_url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden w-full md:min-w-[550px] lg:min-w-[724px]"
-            >
-                <div className="h-full">
-                    <img 
-                        src={image_url} 
-                        alt={project_name} 
-                        className="w-full h-full object-cover" 
-                    />
+            <div className="h-full">
+                <img 
+                    src={image_url} 
+                    alt={project_name} 
+                    className="w-full h-full object-cover" 
+                />
 
-                    <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />
+                <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" />
 
+                {disableAnimations ? (
+                    <div className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-3 md:p-4 z-99">
+                        <div className="flex items-center justify-between mb-2 md:mb-4">
+                            <div className="bg-white px-3 md:px-4 py-1 md:py-1.5 rounded-[35px]">
+                                <h4 className="text-xs md:text-sm font-sans-semibold">{project_name}</h4>
+                            </div>
+
+                            <IoArrowForward size={18} className="md:w-5 md:h-5" />
+                        </div>
+
+                        <p className="text-xs md:text-sm">{project_description}</p>
+                    </div>
+                ) : (
                     <motion.div 
                         className="absolute bottom-4 left-4 right-4 bg-gray-300 rounded-lg p-3 md:p-4 z-99"
                         initial={{ y: 20, opacity: 0 }}
@@ -237,10 +245,30 @@ export const Thumbnail = ({
 
                         <p className="text-xs md:text-sm">{project_description}</p>
                     </motion.div>
-                </div>
-            </a>
+                )}
+            </div>
+        </a>
+    );
+
+    if (disableAnimations) {
+        return (
+            <div className="thumbnail py-6">
+                {thumbnailContent}
+            </div>
+        );
+    }
+
+    return (
+        <motion.div 
+            className="thumbnail py-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+        >
+            {thumbnailContent}
         </motion.div>
-    )
+    );
 }
 
 export default Hero;
