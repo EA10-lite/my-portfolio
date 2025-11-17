@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 import { Button, Logo } from "../components";
 
 
@@ -27,12 +27,8 @@ const socialLinks = [
         icon: <FaGithub />
     },
     {
-        href: "https://www.linkedin.com/in/emanuel-anyigor-831562215/",
-        icon: <FaLinkedin />,
-    },
-    {
-        href: "https://www.linkedin.com/in/emanuel-anyigor-831562215/",
-        icon: <FaLinkedin />,
+        href: "https://x.com/anyigoremmanue4",
+        icon: <FaTwitter />,
     },
 ]
 const Footer = () => {

@@ -166,7 +166,7 @@ const MobileSlider = () => {
             </div>
 
             {/* Dots indicator */}
-            <div className="flex justify-center gap-2 mt-8">
+            <div className="flex justify-center gap-2 mt-10">
                 {projects.map((_, index) => (
                     <button
                         key={index}
@@ -252,7 +252,7 @@ export const Thumbnail = ({
 
     if (disableAnimations) {
         return (
-            <div className="thumbnail py-6">
+            <div className="thumbnail">
                 {thumbnailContent}
             </div>
         );
@@ -260,7 +260,7 @@ export const Thumbnail = ({
 
     return (
         <motion.div 
-            className="thumbnail py-6"
+            className="thumbnail"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
