@@ -62,7 +62,7 @@ const Hero = () => {
                                         title="Schedule a meeting" 
                                         onClick={() => {
                                             // Replace 'YOUR_CALENDLY_URL' with your actual Calendly scheduling link
-                                            window.open('https://calendly.com/YOUR_CALENDLY_URL', '_blank');
+                                            window.open('https://calendly.com/emanuelanyigor/30min', '_blank');
                                         }} 
                                     />
                                 </div>
@@ -205,7 +205,7 @@ export const Thumbnail = ({
             href={project_url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-lg overflow-hidden w-full md:min-w-[550px] lg:min-w-[724px]"
+            className="bg-card h-[300px] md:h-[400px] lg:h-[520px] block thumbnail-box relative rounded-xl overflow-hidden w-full md:min-w-[550px] lg:min-w-[724px]"
         >
             <div className="h-full">
                 <img 

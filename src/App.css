@@ -141,7 +141,7 @@ button:hover {
   display: flex;
   gap: 2rem; /* gap-8 equivalent */
   width: fit-content;
-  animation: marquee-scroll 60s linear infinite;
+  animation: marquee-scroll 40s linear infinite;
   will-change: transform;
   padding: 2rem 0; /* Add vertical padding to prevent clipping when thumbnails scale */
 }
