@@ -56,7 +56,7 @@ const Hero = () => {
                                 variants={itemVariants}
                             >
                                 <p className="text-white text-lg md:text-xl leading-base font-sans-medium">Let's make your website stand out</p>
-                                <p className="text-base md:text-lg text-grey leading-base font-sans-medium">How can we help you today?</p>
+                                <p className="text-base md:text-lg text-grey leading-base font-sans-medium">How can I help you today?</p>
                                 <div className="">
                                     <Button 
                                         title="Schedule a meeting" 
