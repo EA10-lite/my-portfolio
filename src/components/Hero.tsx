@@ -212,8 +212,8 @@ export const Thumbnail = ({
                     src={image_url} 
                     alt={project_name} 
                     className="w-full h-full object-cover" 
-                    loading="lazy"
-                    fetchPriority="high"
+                    // loading="lazy"
+                    // fetchPriority="high"
                 />
 
                 {/* <div className="absolute w-full h-full bottom-0 left-0 right-0 top-0 bg-black/50 z-50" /> */}
