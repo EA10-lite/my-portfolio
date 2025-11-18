@@ -5,8 +5,6 @@ import {
   SiJavascript, 
   SiTailwindcss, 
   SiNodedotjs, 
-  SiExpress, 
-  SiNestjs, 
   SiMongodb, 
   SiPostgresql, 
   SiGit 
