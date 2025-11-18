@@ -35,13 +35,13 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="container mx-auto">
-                <div className="py-6 px-4 md:py-[40px] md:px-[60px]">
+                <div className="py-8 md:py-16 px-4 md:px-[60px]">
                     {/* Header Section */}
                     <div className="mb-6 md:mb-0">
                         <h2 className="text-3xl md:text-[60px] leading-[108%] text-white font-sans-semibold"> Do you have an idea? </h2>
                         <h2 className="text-3xl md:text-[60px] leading-[108%] text-white font-sans-semibold"> Let's Talk!</h2>
                     </div>
-                    <div className="divider w-full h-[1px] my-6 md:my-[40px]" />
+                    <div className="divider w-full h-[1px] my-12 md:my-16" />
 
                     {/* Main Content Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
@@ -82,7 +82,7 @@ const Footer = () => {
                             <div className="flex flex-col gap-4 md:gap-6">
                                 <div className="">
                                     <Button 
-                                        title="Contact us"
+                                        title="Contact"
                                         onClick={() => {}}
                                     />
                                 </div>
@@ -91,7 +91,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="divider w-full h-[1px] my-6 md:my-[40px]" />
+                    <div className="divider w-full h-[1px] my-12 md:my-16" />
 
                     {/* Copyright */}
                     <div className="">

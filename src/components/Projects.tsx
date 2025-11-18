@@ -34,11 +34,11 @@ const Projects = () => {
     };
 
     return (
-        <div className="projects mb-20" ref={ref}>
+        <div className="projects py-16 md:py-24" ref={ref}>
             <div className="container mx-auto">
-                <div className="py-8 px-4 md:py-[80px] md:px-[60px]">
+                <div className="py-8 md:py-16 px-4 md:px-[60px]">
                     <motion.div 
-                        className="flex items-center justify-between mb-8"
+                        className="flex items-center justify-between mb-12 md:mb-16"
                         variants={containerVariants}
                         initial="hidden"
                         animate={isInView ? "visible" : "hidden"}

@@ -51,6 +51,10 @@
   --font-Sans: "Sans", sans-serif;
 }
 
+*, html, body {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-primary);
 }
@@ -176,11 +180,28 @@ button:hover {
   overflow: hidden;
 }
 
+/* Skills marquee - faster scroll speed for smaller items */
+.skills .marquee-track {
+  animation: marquee-scroll 25s linear infinite;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+/* Skill item hover effect - now handled by Framer Motion, but keeping for fallback */
+.skill-item:hover {
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
 /* Mobile responsiveness for marquee */
 @media (max-width: 768px) {
   .marquee-track {
     gap: 1rem;
     padding: 1rem 0;
+  }
+  
+  .skills .marquee-track {
+    gap: 1rem;
+    animation: marquee-scroll 20s linear infinite;
   }
   
   .hero-image-content {

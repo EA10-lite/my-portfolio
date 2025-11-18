@@ -30,12 +30,12 @@ const Hero = () => {
     };
 
     return (
-        <div className="app-hero mt-10 mb-20">
+        <div className="app-hero mt-10 mb-10 md:mb-20">
             <div className="container mx-auto">
                 <div className="hero-text-content mb-10 md:mb-[80px]">
                     <div className="py-8 px-4 md:py-[80px] md:px-[60px]">
                         <motion.div 
-                            className="flex items-center justify-between flex-wrap gap-16 md:gap-8"
+                            className="flex items-center justify-between flex-wrap gap-8 md:gap-8"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
@@ -83,7 +83,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className="hero-image-content">
+            <div id="projects" className="hero-image-content">
                 {/* Mobile Slider - shows one at a time, auto-advances */}
                 <div className="mobile-slider-container md:hidden">
                     <MobileSlider />
@@ -166,7 +166,7 @@ const MobileSlider = () => {
             </div>
 
             {/* Dots indicator */}
-            <div className="flex justify-center gap-2 mt-10">
+            <div className="flex justify-center gap-2 mt-10 hidden">
                 {projects.map((_, index) => (
                     <button
                         key={index}

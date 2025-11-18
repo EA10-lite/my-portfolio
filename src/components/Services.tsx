@@ -47,11 +47,11 @@ const Services = () => {
     };
 
     return (
-        <div className="services mb-20" ref={ref}>
+        <div className="services mb-10 md:mb-20" ref={ref}>
             <div className="container mx-auto">
-                <div className="services-content py-8 px-4 md:py-[80px] md:px-[60px]">
+                <div className="services-content py-8 md:py-16 px-4 md:px-[60px]">
                     <motion.div 
-                        className="max-w-[600px] mx-auto mb-12 text-center"
+                        className="max-w-[600px] mx-auto mb-12 md:mb-16 text-center"
                         variants={headerVariants}
                         initial="hidden"
                         animate={isInView ? "visible" : "hidden"}
