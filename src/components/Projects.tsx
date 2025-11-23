@@ -34,7 +34,7 @@ const Projects = () => {
     };
 
     return (
-        <div className="projects py-16 md:py-24" ref={ref}>
+        <div className="projects py-16 md:py-24" id="projects" ref={ref}>
             <div className="container mx-auto">
                 <div className="py-8 md:py-16 px-4 md:px-[60px]">
                     <motion.div
