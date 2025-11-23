@@ -6,7 +6,7 @@ import { projects } from "../data/projects"
 const Projects = () => {
     // Ref for scroll-triggered animations
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.2 });
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
 
     // Animation variants for the container
     const containerVariants = {
@@ -14,7 +14,7 @@ const Projects = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2,
+                staggerChildren: 0.1,
                 delayChildren: 0.1,
             },
         },
@@ -37,35 +37,35 @@ const Projects = () => {
         <div className="projects py-16 md:py-24" ref={ref}>
             <div className="container mx-auto">
                 <div className="py-8 md:py-16 px-4 md:px-[60px]">
-                    <motion.div 
-                        className="flex items-center justify-between mb-12 md:mb-16"
+                    <motion.div
+                        className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6"
                         variants={containerVariants}
                         initial="hidden"
                         animate={isInView ? "visible" : "hidden"}
                     >
-                        <motion.div className="" variants={headerVariants}>
-                            <h2 className="text-3xl md:text-4xl lg:text-[44px] leading-[108%] text-white font-sans-semibold mb-4">My Work</h2>
+                        <motion.div className="max-w-2xl" variants={headerVariants}>
+                            <h2 className="text-3xl md:text-4xl lg:text-[44px] leading-[108%] text-white font-sans-semibold mb-4">Selected Works</h2>
                             <p className="text-base md:text-lg lg:text-2xl leading-[120%] text-grey font-sans-medium">
-                                Here are some of the projects I've worked on.
+                                A collection of projects that showcase my passion for building digital experiences.
                             </p>
                         </motion.div>
-
-                        <div className="">
-                            
-                        </div>
                     </motion.div>
 
-                    <div className="projects-lists">
-                        <div className="space-y-12">
-                            {projects.slice(0, 1).map((project, index) => (
-                                <Project 
-                                    key={project.id} 
+                    <div className="projects-grid">
+                        <motion.div
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate={isInView ? "visible" : "hidden"}
+                        >
+                            {projects.map((project, index) => (
+                                <Project
+                                    key={project.id}
                                     {...project}
                                     index={index}
-                                    isInView={isInView}
                                 />
                             ))}
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,6 @@ type ProjectProps = {
     project_short_summary?: string;
     tags?: string[];
     index: number;
-    isInView: boolean;
 }
 
 const Project = ({
@@ -89,112 +88,79 @@ const Project = ({
     project_url,
     project_name,
     project_description,
-    project_short_summary,
     tags,
     index,
-    isInView,
 }: ProjectProps) => {
-    // Animation variants for project items
-    const projectVariants = {
-        hidden: { opacity: 0, y: 40 },
+    // Animation variants for project cards
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 0.7,
-                delay: index * 0.2,
-                ease: [0.4, 0, 0.2, 1] as const,
-            },
-        },
-    };
-
-    // Animation variants for tags
-    const tagVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: (i: number) => ({
-            opacity: 1,
-            scale: 1,
-            transition: {
-                delay: index * 0.2 + i * 0.1,
-                duration: 0.4,
-            },
-        }),
-    };
-
-    // Animation variants for image
-    const imageVariants = {
-        hidden: { opacity: 0, x: 40 },
-        visible: {
-            opacity: 1,
-            x: 0,
-            transition: {
-                duration: 0.7,
-                delay: index * 0.2 + 0.3,
+                duration: 0.5,
+                delay: index * 0.1,
                 ease: [0.4, 0, 0.2, 1] as const,
             },
         },
     };
 
     return (
-        <motion.div 
-            className="project"
-            variants={projectVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+        <motion.a
+            href={project_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block h-full"
+            variants={cardVariants}
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
         >
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-                <motion.div 
-                    className="project-details w-full md:w-1/2"
-                    variants={projectVariants}
-                >
-                    <div className="max-w-[80%]">
-                        <div className="flex items-center gap-4 mb-4 flex-wrap">
-                            {tags?.map((tag, i) => (
-                                <motion.div 
-                                    key={tag}
-                                    className="bg-card rounded-[35px] px-4 py-2"
-                                    custom={i}
-                                    variants={tagVariants}
-                                    initial="hidden"
-                                    animate={isInView ? "visible" : "hidden"}
-                                >
-                                    <span className="text-sm font-sans-medium text-white">{tag}</span>
-                                </motion.div>
-                            ))}
-                        </div>
-                        <h3 className="text-3xl md:text-4xl lg:text-[60px] leading-[108%] text-white font-sans-semibold mb-4">{project_short_summary || project_name}</h3>
-                        <p className="text-base md:text-lg lg:text-2xl leading-[120%] text-grey font-sans-medium mb-4">{project_description}</p>
-
-                        <motion.a 
-                            href={project_url} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="text-white text-sm md:text-base font-sans-medium flex items-center gap-2 hover:border-b transition-all w-fit"
-                            whileHover={{ x: 5 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <span>Visit Project</span>
-                            <IoIosArrowForward className="text-white text-xl" />
-                        </motion.a>
-                    </div>
-                </motion.div>
-
-                <motion.div 
-                    className="project-thumbnail w-full md:w-1/2"
-                    variants={imageVariants}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    <img 
-                        src={image_url} 
-                        alt={project_name} 
-                        className="w-full h-full object-cover rounded-lg"
+            <div className="bg-card/30 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
+                {/* Image Container */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                    <motion.img
+                        src={image_url}
+                        alt={project_name}
+                        className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-110"
                     />
-                </motion.div>
+
+                    {/* Floating Action Button */}
+                    <div className="absolute bottom-4 right-4 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100">
+                        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black shadow-lg">
+                            <IoIosArrowForward className="text-xl -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex flex-wrap gap-2 mb-4 hidden">
+                        {tags?.slice(0, 3).map((tag) => (
+                            <span
+                                key={tag}
+                                className="text-xs font-sans-medium text-white/80 bg-white/10 px-3 py-1 rounded-full border border-white/5"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    <h3 className="text-xl md:text-2xl text-white font-sans-semibold mb-3 transition-colors duration-300">
+                        {project_name}
+                    </h3>
+
+                    <p className="text-grey text-sm md:text-base leading-relaxed line-clamp-3 mb-4 flex-grow">
+                        {project_description}
+                    </p>
+
+                    <div className="flex items-center gap-2 text-sm font-sans-medium text-white/60 group-hover:text-white transition-colors mt-auto pt-4 border-t border-white/5">
+                        <span>View Project</span>
+                        <IoIosArrowForward className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                </div>
             </div>
-        </motion.div>
+        </motion.a>
     );
 };
 

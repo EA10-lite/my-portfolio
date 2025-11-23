@@ -1,5 +1,5 @@
 import "./App.css";
-import { Hero, Services, About } from "./components";
+import { Hero, Services, About, Projects } from "./components";
 import { Navbar, Footer } from "./layouts";
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
       <Hero />
       <About />
       <Services />
+      <Projects />
       <Footer />
     </div>
   )
