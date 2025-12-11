@@ -78,19 +78,19 @@ const About = () => {
             <div className="container mx-auto">
                 <div className="py-8 md:py-16 px-4 md:px-[60px]">
                     {/* Bio Section */}
-                    <div className="bio py-8 mb-8">
+                    <div className="bio py-8 mb-8 bg-card/30 px-4 py-8 md:p-10 rounded-2xl border border-dashed border-[1.5px] border-white/30">
                         <motion.h4 
-                            className="text-2xl font-bold text-white mb-4"
+                            className="text-2xl md:text-4xl font-bold text-white mb-4"
                             variants={itemVariants}
                         >
                             Whoami?
                         </motion.h4>
 
                         <motion.div 
-                            className="w-full lg:max-w-[80%]"
+                            className="w-full"
                             variants={itemVariants}
                         >
-                            <p className="text-2xl md:text-3xl lg:text-[44px] leading-[120%] text-white font-sans-semibold">
+                            <p className="text-2xl leading-[120%] text-white font-sans-semibold">
                                 <span className="framer-text">
                                 {about.bio}
                                 </span>
@@ -99,52 +99,60 @@ const About = () => {
                     </div>
 
                     {/* Divider */}
-                    <motion.div 
+                    <motion.div
                         className="divider w-full h-[1px] my-12 md:my-16"
                         variants={dividerVariants}
                     />
 
                     {/* Skills Section */}
-                    <motion.div 
-                        className="skills py-8"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                        variants={skillContainerVariants}
-                    >
-                        <motion.h4 
-                            className="text-2xl font-bold text-white mb-6"
-                            variants={itemVariants}
-                        >
-                            Skills & Technologies
-                        </motion.h4>
-                        
-                        {/* Skills Grid */}
-                        <motion.div 
-                            className="flex items-center gap-6 flex-wrap"
+                    <div className="border border-dashed border-[1.5px] border-white/50 rounded-2xl bg-card/30 px-4 py-8 md:p-10">
+                        <motion.div
+                            className="skills py-8"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
                             variants={skillContainerVariants}
                         >
-                            {about.skills.map((skill, index) => 
-                                <SkillItem 
-                                    key={`skill-${index}`} 
-                                    name={skill.name} 
-                                    Icon={skill.icon}
-                                    color={skill.color}
-                                    variants={skillItemVariants}
-                                />
-                            )}
+                            <motion.h4
+                                className="text-2xl font-bold text-white mb-2"
+                                variants={itemVariants}
+                            >
+                                Skills & Technologies
+                            </motion.h4>
+
+                            <motion.p
+                                className="text-white mb-6"
+                                variants={itemVariants}
+                            >
+                                Here are some of the technologies i use in my everyday work.
+                            </motion.p>
+                            {/* Skills Grid */}
+                            <motion.div
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+                                variants={skillContainerVariants}
+                            >
+                                {about.skills.map((skill, index) => 
+                                    <SkillItem 
+                                        key={`skill-${index}`} 
+                                        name={skill.name} 
+                                        Icon={skill.icon}
+                                        color={skill.color}
+                                        variants={skillItemVariants}
+                                    />
+                                )}
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
+                    </div>
 
                     {/* Divider */}
-                    <motion.div 
-                        className="divider w-full h-[1px] my-12 md:my-16"
+                    <motion.div
+                        className="divider w-full h-[1px] my-12 md:my-16 hidden"
                         variants={dividerVariants}
                     />
 
                     {/* Experience Section (Hidden) */}
                     <div className="experience hidden">
-                        <motion.h4 
+                        <motion.h4
                             className="text-2xl font-bold text-white mb-6"
                             variants={itemVariants}
                             initial="hidden"
@@ -164,17 +172,17 @@ const About = () => {
 type SkillItemProps = {
     name: string;
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { className?: string }>;
-    color: string;
+    color?: string;
     variants: Variants;
 }
 
-const SkillItem = ({ name, Icon, color, variants }: SkillItemProps) => {
+const SkillItem = ({ name, Icon, variants }: SkillItemProps) => {
     return (
         <motion.div
-            className="skill-item flex items-center justify-center gap-3 min-w-[120px] px-6 py-4 rounded-lg bg-card/30 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-300"
+            className="skill-item flex items-center justify-center gap-3 px-6 py-8 rounded-lg bg-card/30 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-300"
             variants={variants}
             whileHover={{ 
-                scale: 1.1, 
+                // scale: 1.1, 
                 y: -5,
                 transition: { duration: 0.2 }
             }}
@@ -182,14 +190,14 @@ const SkillItem = ({ name, Icon, color, variants }: SkillItemProps) => {
         >
             <motion.div
                 whileHover={{ 
-                    scale: 1.2,
+                    // scale: 1.2,
                     rotate: [0, -10, 10, -10, 0],
                     transition: { duration: 0.5 }
                 }}
             >
                 <Icon 
                     className="text-3xl md:text-4xl transition-colors duration-300" 
-                    style={{ color: color }}
+                    style={{ color: "white" }}
                 />
             </motion.div>
             <span className="text-sm md:text-base text-white font-medium whitespace-nowrap">

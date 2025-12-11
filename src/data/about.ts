@@ -18,7 +18,7 @@ export type Skill = {
 };
 
 export const about = {
-    bio: "Hi, I'm Emmanuel Anyigor — a Full-Stack Engineer who builds fast, reliable, and user-focused web and mobile experiences. With 3+ years of working experience, I turn complex product ideas into clean interfaces and scalable backend systems.",
+    bio: "Hi, my name is Emmanuel Anyigor, and I’m a Full-Stack Web and Mobile Developer passionate about building fast, reliable, and user-focused digital experiences. With over 3 years of professional experience, I specialize in turning complex product ideas into clean, intuitive interfaces and scalable backend systems. I enjoy working across the entire development lifecycle — from designing and implementing seamless frontends to architecting robust backend services — to create products that are both high-performing and delightful for users.",
   
     skills: [
       { name: "React", icon: SiReact, color: "#61DAFB" }, // React cyan
