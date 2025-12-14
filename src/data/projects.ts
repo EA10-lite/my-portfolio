@@ -62,4 +62,20 @@ export const projects: ProjectProps[] = [
         project_url: "https://coralstone.capital/",
         image_url: "/images/coralstone.jpg",
     },
+    {
+        id: 7,
+        project_name: "Wearable",
+        tags: ["React Vite", "TailwindCSS", "NodeJS", "Express", "MongoDB"],
+        project_description: "An e-commerce platform for buying and selling clothing items.",
+        project_url: "https://wearable-amber.vercel.app/",
+        image_url: "/images/wearable.jpg",
+    },
+    {
+        id: 8,
+        project_name: "Wearable Admin",
+        tags: ["React Vite", "TailwindCSS", "NodeJS", "Express", "MongoDB"],
+        project_description: "An admin dashboard for the Wearable e-commerce platform.",
+        project_url: "",
+        image_url: "/images/wearable-admin.jpg",
+    },
 ]

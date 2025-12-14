@@ -93,14 +93,14 @@ const Hero = () => {
                 <div className="marquee-container hidden md:block">
                     <div className="marquee-track">
                         {/* First set of thumbnails */}
-                        {projects.map((project: ThumbnailProps) => (
+                        {projects.slice(0,6).map((project: ThumbnailProps) => (
                             <Thumbnail 
                                 key={project.id} 
                                 {...project}
                             />
                         ))}
                         {/* Duplicate set for seamless infinite scroll */}
-                        {projects.map((project: ThumbnailProps) => (
+                        {projects?.slice(0,6).map((project: ThumbnailProps) => (
                             <Thumbnail 
                                 key={`duplicate-${project.id}`} 
                                 {...project}
@@ -121,7 +121,7 @@ const MobileSlider = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => 
-                prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+                prevIndex === projects?.slice(0,6).length - 1 ? 0 : prevIndex + 1
             );
         }, 4000); // Change slide every 4 seconds
 
@@ -167,7 +167,7 @@ const MobileSlider = () => {
 
             {/* Dots indicator */}
             <div className="flex justify-center gap-2 mt-10 hidden">
-                {projects.map((_, index) => (
+                {projects?.slice(0,6).map((_, index) => (
                     <button
                         key={index}
                         onClick={() => setCurrentIndex(index)}
