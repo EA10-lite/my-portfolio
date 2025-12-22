@@ -210,3 +210,58 @@ button:hover {
 }
 
 /* Light mode styles can be added here if needed */
+
+/* React Flow Custom Styling - matches project theme */
+.react-flow-container {
+    background: transparent;
+}
+
+/* Customize React Flow controls to match theme */
+.react-flow__controls {
+    background: rgba(110, 111, 122, 0.3) !important;
+    border: 1px dashed rgba(253, 253, 253, 0.3) !important;
+    border-radius: 8px;
+}
+
+.react-flow__controls-button {
+    background: rgba(110, 111, 122, 0.3) !important;
+    border-bottom: 1px dashed rgba(253, 253, 253, 0.2) !important;
+    color: #fdfdfd !important;
+}
+
+.react-flow__controls-button:hover {
+    background: rgba(110, 111, 122, 0.5) !important;
+}
+
+.react-flow__controls-button:last-child {
+    border-bottom: none !important;
+}
+
+/* Customize React Flow minimap to match theme */
+.react-flow__minimap {
+    background: rgba(5, 6, 26, 0.5) !important;
+    border: 1px dashed rgba(253, 253, 253, 0.3) !important;
+    border-radius: 8px;
+}
+
+/* Customize React Flow background pattern */
+.react-flow__background {
+    opacity: 0.1;
+}
+
+/* Customize edge styles */
+.react-flow__edge-path {
+    stroke: #9999a1;
+    stroke-width: 2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+    stroke: #e6be87;
+    stroke-width: 3;
+}
+
+/* Customize node selection */
+.react-flow__node.selected {
+    outline: 2px solid #e6be87;
+    outline-offset: 2px;
+}

@@ -8,6 +8,7 @@ const App = () => {
       {/* Header */}
       <Navbar />
       <Hero />
+      {/* <Experience /> */}
       <About />
       <Services />
       <Projects />
