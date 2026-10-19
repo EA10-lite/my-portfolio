@@ -90,3 +90,70 @@ export function Shot({ label, className = '' }: { label: string; className?: str
     </div>
   )
 }
+
+export const screenSrc = (name: string) => `${import.meta.env.BASE_URL}screens/${name}.webp`
+
+/** A real app screenshot inside a phone frame. `cropped` hides the bottom bezel (bleeds off the card). */
+export function PhoneShot({
+  name,
+  alt,
+  className = '',
+  cropped = true,
+  eager = false,
+}: {
+  name: string
+  alt: string
+  className?: string
+  cropped?: boolean
+  eager?: boolean
+}) {
+  return (
+    <div
+      className={`overflow-hidden bg-[#050708] p-[7px] shadow-[0_30px_60px_rgba(0,0,0,0.3)] ${
+        cropped ? 'rounded-t-[30px] pb-0' : 'rounded-[32px]'
+      } ${className}`}
+    >
+      <img
+        src={screenSrc(name)}
+        alt={alt}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        width={390}
+        height={844}
+        className={`block h-full w-full object-cover object-top ${cropped ? 'rounded-t-[23px]' : 'rounded-[25px]'}`}
+      />
+    </div>
+  )
+}
+
+/** A real dashboard screenshot inside a simple browser window. */
+export function BrowserShot({
+  name,
+  alt,
+  className = '',
+  eager = false,
+}: {
+  name: string
+  alt: string
+  className?: string
+  eager?: boolean
+}) {
+  return (
+    <div className={`flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.3)] ${className}`}>
+      <div aria-hidden="true" className="flex h-7 shrink-0 items-center gap-1.5 border-b border-black/5 bg-[#F6F7F7] px-3">
+        <span className="h-2 w-2 rounded-full bg-[#E1DED8]" />
+        <span className="h-2 w-2 rounded-full bg-[#E1DED8]" />
+        <span className="h-2 w-2 rounded-full bg-[#E1DED8]" />
+      </div>
+      <img
+        src={screenSrc(name)}
+        alt={alt}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        width={1440}
+        height={1000}
+        className="block min-h-0 w-full flex-1 object-cover object-left-top"
+      />
+    </div>
+  )
+}

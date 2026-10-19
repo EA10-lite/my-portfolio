@@ -25,7 +25,9 @@ export const stats = [
 ]
 
 export type Palette = {
+  /** Card background behind the screens, and the text colour that sits on it. */
   bg: string
+  fg: string
   screen: string
   ink: string
   accent: string
@@ -53,6 +55,8 @@ export type Project = {
   headline: string
   summary: string
   palette: Palette
+  /** Real screens captured from the app's code (sample data), in public/screens. */
+  screens: { phones: string[]; desktop?: string }
   links?: { label: string; href: string }[]
   caseStudy: CaseSection
 }
@@ -72,7 +76,8 @@ export const projects: Project[] = [
     headline: 'A booking platform built end to end by one engineer',
     summary:
       'TEGO needed an app for customers, tools for its team and a website for the public. I built all three and took the app through Google Play and App Store release.',
-    palette: { bg: '#1B3B33', screen: '#F3F7F5', ink: '#0A0E11', accent: '#1B3B33', block: '#DCE7E2' },
+    palette: { bg: '#A9DBFB', fg: '#0A0E11', screen: '#F3F9FE', ink: '#0A0E11', accent: '#33ABF7', block: '#DDEFFC' },
+    screens: { phones: ['tego-home', 'tego-providers'], desktop: 'tego-admin' },
     links: [
       { label: 'Google Play', href: '' },
       { label: 'App Store', href: '' },
@@ -130,7 +135,8 @@ export const projects: Project[] = [
     headline: 'Taking a reading and creator platform from web to native',
     summary:
       'Munkai already had a web platform for reading and publishing stories. I rebuilt it as a native app, screen by screen, matching its design system on iOS and Android.',
-    palette: { bg: '#2C2850', screen: '#15142B', ink: '#E9E7FF', accent: '#7C6CF2', block: '#2A2850' },
+    palette: { bg: '#141A44', fg: '#FFFFFF', screen: '#0B1033', ink: '#E9EEFF', accent: '#8FD3FF', block: '#1C2456' },
+    screens: { phones: ['munkai-home', 'munkai-publication', 'munkai-reader', 'munkai-studio'] },
     caseStudy: {
       brief: [
         'The web app was the source of truth for design, features and flows. The goal was a native app that felt like Munkai, not a wrapped website.',
@@ -184,7 +190,8 @@ export const projects: Project[] = [
     headline: 'Rebuilding a live app’s foundations without changing how it feels',
     summary:
       'LovePing helps couples send love notes and gift nudges. I audited the whole app, planned App 2.0, and moved it from NativeWind to plain React Native styling while keeping its look.',
-    palette: { bg: '#F3DADF', screen: '#FFF6F7', ink: '#5A1427', accent: '#E11D48', block: '#F8D7DD' },
+    palette: { bg: '#0F3324', fg: '#FFFFFF', screen: '#05231A', ink: '#FFFFFF', accent: '#48D962', block: '#0F3324' },
+    screens: { phones: ['loveping-home', 'loveping-messages', 'loveping-gifts'] },
     caseStudy: {
       brief: [
         'The team wanted to drop NativeWind and move to StyleSheet.create without losing any features or changing the experience users knew.',
@@ -239,7 +246,8 @@ export const projects: Project[] = [
     headline: 'Making a credit product clear for corps members and controllable for ops',
     summary:
       'Kopa Xclusive lets NYSC corps members buy from vendors now and repay a month later. I worked on the admin dashboard and designed the public landing page.',
-    palette: { bg: '#F1E6CF', screen: '#FFFBF2', ink: '#3D2F12', accent: '#B7791F', block: '#EFE3C8' },
+    palette: { bg: '#008751', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0A0E11', accent: '#008751', block: '#E3F1EA' },
+    screens: { phones: [], desktop: 'kopa-dashboard' },
     caseStudy: {
       brief: [
         'Two audiences, two needs: corps members must understand exactly how credit and repayment work, and the operations team needs control over orders, vendors and withdrawals.',

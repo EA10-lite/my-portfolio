@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { projects } from '../data/site'
 import { DarkBand, Label, Tag } from '../components/ui'
 import { Reveal, WordsReveal, useParallax, useScaleIn } from '../components/motion'
-import { Dashboard, Phone } from '../components/mocks'
+import { BrowserShot, PhoneShot } from '../components/mocks'
 import { useScrollTo } from '../lib/smooth'
 import { usePageTitle } from '../lib/usePageTitle'
 import NotFound from './NotFound'
@@ -38,6 +38,7 @@ export default function CaseStudy() {
   if (!p) return <NotFound />
   const next = projects[(index + 1) % projects.length]
   const cs = p.caseStudy
+  const phones = p.screens.phones
   const storeLinks = (p.links ?? []).filter((l) => l.href)
 
   return (
@@ -69,37 +70,46 @@ export default function CaseStudy() {
         </div>
 
         <div className="container-x pb-12 md:pb-16">
-          <div
-            ref={media}
-            role="img"
-            aria-label={`${p.name} screens`}
-            className="relative h-[440px] overflow-hidden rounded-[24px] md:h-[620px]"
-            style={{ background: p.palette.bg }}
-          >
-            {p.kind === 'web' ? (
-              <div className="absolute inset-x-[6%] bottom-0 top-14">
-                <Dashboard title={p.name} className="h-full rounded-b-none" />
-              </div>
-            ) : (
-              <>
-                {p.slug === 'tego' ? (
-                  <div className="absolute left-[34%] right-[-4%] top-16 hidden h-[420px] md:block">
-                    <Dashboard className="h-full" />
-                  </div>
-                ) : (
-                  <div className="absolute right-[8%] top-16 hidden h-[460px] w-[230px] md:block">
-                    <Phone p={p.palette} cropped={false} className="h-full w-full" />
-                  </div>
-                )}
-                <div ref={phoneA} className="absolute bottom-[-40px] left-[7%] h-[440px] w-[220px]">
-                  <Phone p={p.palette} cropped={false} className="h-full w-full" />
+          <figure className="m-0 flex flex-col gap-3">
+            <div ref={media} className="relative h-[460px] overflow-hidden rounded-[24px] md:h-[640px]" style={{ background: p.palette.bg }}>
+              {phones.length === 0 && p.screens.desktop ? (
+                <div className="absolute inset-x-[5%] bottom-[-40px] top-12">
+                  <BrowserShot name={p.screens.desktop} alt={`${p.name} dashboard`} eager className="h-full" />
                 </div>
-                <div ref={phoneB} className="absolute bottom-[-90px] left-[calc(7%+190px)] hidden h-[420px] w-[205px] sm:block">
-                  <Phone p={p.palette} variant="grid" cropped={false} className="h-full w-full" />
+              ) : p.screens.desktop ? (
+                <>
+                  <div className="absolute left-[30%] right-[-10%] top-14 hidden h-[460px] md:block">
+                    <BrowserShot name={p.screens.desktop} alt={`${p.name} admin dashboard`} eager className="h-full" />
+                  </div>
+                  <div ref={phoneA} className="absolute bottom-[-40px] left-[6%] h-[460px] w-[214px]">
+                    <PhoneShot name={phones[0]} alt={`${p.name} app screen`} eager cropped={false} className="h-full w-full" />
+                  </div>
+                  {phones[1] && (
+                    <div ref={phoneB} className="absolute bottom-[-110px] left-[calc(6%+190px)] hidden h-[440px] w-[204px] sm:block">
+                      <PhoneShot name={phones[1]} alt={`${p.name} app screen`} eager cropped={false} className="h-full w-full" />
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="absolute inset-x-0 bottom-0 top-12 flex items-end justify-center gap-4 px-4 md:gap-8">
+                  {phones[1] && (
+                    <div ref={phoneB} className="hidden h-[440px] w-[204px] translate-y-16 md:block">
+                      <PhoneShot name={phones[1]} alt={`${p.name} app screen`} eager cropped={false} className="h-full w-full" />
+                    </div>
+                  )}
+                  <div ref={phoneA} className="h-[470px] w-[218px] translate-y-8">
+                    <PhoneShot name={phones[0]} alt={`${p.name} app screen`} eager cropped={false} className="h-full w-full" />
+                  </div>
+                  {phones[2] && (
+                    <div className="hidden h-[440px] w-[204px] translate-y-16 md:block">
+                      <PhoneShot name={phones[2]} alt={`${p.name} app screen`} eager cropped={false} className="h-full w-full" />
+                    </div>
+                  )}
                 </div>
-              </>
-            )}
-          </div>
+              )}
+            </div>
+            <figcaption className="text-sm text-muted-dark">{p.slug === 'munkai' ? `Real screens from the ${p.name} app.` : `Real screens from the ${p.name} codebase, shown with sample data.`}</figcaption>
+          </figure>
 
           <dl className="mt-6 grid overflow-hidden rounded-[20px] border border-line-dark sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -174,6 +184,27 @@ export default function CaseStudy() {
             </ul>
           </section>
 
+          {phones.length > 1 && (
+            <section aria-labelledby="screens-h" className="flex flex-col gap-6">
+              <Label>Screens</Label>
+              <h2 id="screens-h" className="text-[clamp(30px,3.4vw,44px)] font-[450] leading-[1.1] tracking-[-0.03em]">
+                Inside the app.
+              </h2>
+              <div className="-mx-5 overflow-x-auto px-5 pb-4 md:mx-0 md:px-0" data-lenis-prevent>
+                <ul className="flex w-max gap-4 md:w-auto md:grid md:grid-cols-[repeat(auto-fill,minmax(180px,220px))]">
+                  {phones.map((name) => (
+                    <Reveal as="li" key={name} className="w-[200px] md:w-auto">
+                      <div className="rounded-[24px] p-3" style={{ background: p.palette.bg }}>
+                        <PhoneShot name={name} alt={`${p.name}: ${name.split('-').slice(1).join(' ')} screen`} cropped={false} className="aspect-[390/844] w-full" />
+                      </div>
+                      <span className="mt-3 block text-sm capitalize text-muted">{name.split('-').slice(1).join(' ')}</span>
+                    </Reveal>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          )}
+
           <section id="problem" className="flex scroll-mt-28 flex-col gap-7 rounded-[24px] bg-ink p-8 text-paper md:p-12">
             <Label dark>03 — A hard problem</Label>
             <h2 className="text-[clamp(28px,3vw,40px)] font-[450] leading-[1.15] tracking-[-0.025em]">{cs.problem.title}</h2>
@@ -233,7 +264,7 @@ export default function CaseStudy() {
         <Link
           to={`/work/${next.slug}`}
           className="group flex flex-wrap items-center justify-between gap-8 overflow-hidden rounded-[24px] p-8 md:p-12"
-          style={{ background: next.palette.bg, color: next.kind === 'web' || next.slug === 'loveping' ? '#0A0E11' : '#FFFFFF' }}
+          style={{ background: next.palette.bg, color: next.palette.fg }}
         >
           <div className="flex flex-col gap-3">
             <span className="label opacity-80">Next case study</span>

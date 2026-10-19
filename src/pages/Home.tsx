@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { capabilities, companies, helps, jobs, profile, projects, stats } from '../data/site'
 import { ButtonLink, DarkBand, Label, LiveDot, cvHref } from '../components/ui'
 import { CountUp, Reveal, WordsReveal, useParallax } from '../components/motion'
-import { Dashboard, Phone } from '../components/mocks'
+import { BrowserShot, PhoneShot } from '../components/mocks'
 import { ProjectCard } from '../components/ProjectCard'
 import { usePageTitle } from '../lib/usePageTitle'
 
@@ -80,16 +80,18 @@ export default function Home() {
                 className="group relative block h-[420px] overflow-hidden rounded-[24px] md:h-[480px]"
                 style={{ background: tego.palette.bg }}
               >
-                <div ref={board} className="absolute left-[12%] right-[-8%] top-12 h-[300px]">
-                  <Dashboard className="h-full" />
+                <div ref={board} className="absolute left-[12%] right-[-12%] top-12 h-[320px]">
+                  <BrowserShot name={tego.screens.desktop!} alt="TEGO admin dashboard" eager className="h-full" />
                 </div>
                 <div
                   ref={phone}
                   className="absolute -bottom-10 left-[6%] h-[300px] w-[150px] sm:h-[360px] sm:w-[180px] md:h-[380px] md:w-[190px]"
                 >
-                  <Phone p={tego.palette} cropped={false} className="h-full w-full" />
+                  <PhoneShot name={tego.screens.phones[0]} alt="TEGO app home screen" eager cropped={false} className="h-full w-full" />
                 </div>
-                <span className="label absolute bottom-6 right-6 hidden items-center gap-2.5 border-b border-paper pb-1 text-paper sm:inline-flex">
+                <span
+                  className="label absolute bottom-6 right-6 hidden items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-paper sm:inline-flex"
+                >
                   Featured · TEGO{' '}
                   <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
                     →
@@ -201,7 +203,15 @@ export default function Home() {
                   className="group hidden h-60 flex-[0_0_240px] items-end justify-center overflow-hidden rounded-[20px] pt-7 md:flex"
                   style={{ background: p.palette.bg }}
                 >
-                  <Phone p={p.palette} className="h-[212px] w-[120px] transition-transform duration-700 group-hover:-translate-y-2" />
+                  {p.screens.phones[0] ? (
+                    <PhoneShot
+                      name={p.screens.phones[0]}
+                      alt={`${p.name} app screen`}
+                      className="h-[212px] w-[120px] transition-transform duration-700 group-hover:-translate-y-2"
+                    />
+                  ) : (
+                    <BrowserShot name={p.screens.desktop!} alt={`${p.name} dashboard`} className="h-[180px] w-[220px]" />
+                  )}
                 </Link>
               </Reveal>
             )
