@@ -130,6 +130,64 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'wearable',
+    name: 'Wearable',
+    kind: 'web',
+    role: 'Full-stack developer, sole engineer',
+    year: '2026',
+    timeline: 'Jun – Sep 2026',
+    platforms: 'Web, admin and API',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'TanStack Query', 'Node.js', 'Express', 'MongoDB', 'Paystack', 'Cloudinary'],
+    tags: ['E-commerce', 'Full-stack', 'Live'],
+    line: 'A Nigerian fashion store: the shop, the admin that runs it and the API behind both, live at wearable.ng.',
+    headline: 'An online fashion store, from the shop window to the stock room',
+    summary:
+      'Wearable sells men’s and women’s clothing, footwear and accessories across Nigeria. I built the storefront, the admin dashboard and the backend API, with Paystack payments and delivery fees down to the local government area.',
+    palette: { bg: '#E7E3DC', fg: '#0A0E11', screen: '#FFFFFF', ink: '#0A0E11', accent: '#0A0E11', block: '#F2F2F2' },
+    screens: { phones: ['wearable-home', 'wearable-product', 'wearable-category'], desktop: 'wearable-admin' },
+    video: { phone: 'wearable-store-m', desktop: 'wearable-admin' },
+    links: [{ label: 'Visit wearable.ng', href: 'https://wearable.ng' }],
+    caseStudy: {
+      brief: [
+        'Wearable needed a place to sell clothing online in Nigeria: a shop customers enjoy browsing, a back office the team can run without a developer, and payments and delivery that work anywhere in the country.',
+        'I was the only engineer, so I designed the data model once and built the storefront, the admin and the API on top of it.',
+      ],
+      built: [
+        {
+          title: 'Storefront',
+          body: 'A fast React and TypeScript shop with categories, search, product pages with sizes and colours, a cart that survives a refresh, and checkout with Paystack. Customers sign in with a one-time code sent to their email, so there is no password to forget.',
+        },
+        {
+          title: 'Admin dashboard',
+          body: 'Sales, order trends and category performance at a glance. The team adds products with photos, sizes and stock, follows each order from payment to delivery, manages customers and sets delivery fees.',
+        },
+        {
+          title: 'Backend API',
+          body: 'Node.js, Express and MongoDB with JWT auth, Cloudinary image uploads and email codes. Paystack webhooks are checked against their signature before an order is marked as paid. Helmet, rate limits, input validation and Swagger docs are built in.',
+        },
+        {
+          title: 'Search and sharing',
+          body: 'Per-page titles, descriptions and share tags, lazy-loaded pages, and a WhatsApp button so shoppers can ask a question before they buy.',
+        },
+      ],
+      problem: {
+        title: 'Delivery fees that depend on exactly where you live',
+        challenge:
+          'Delivering to Lekki doesn’t cost the same as delivering to Kano, and the team needed to change prices without asking a developer. The fee also had to be right before the customer paid, not fixed by hand afterwards.',
+        approach:
+          'I gave the admin a delivery-fee table by state, with optional prices for individual local government areas. At checkout the server looks for the exact area first, then the state, then a default, and stops the order if no delivery option exists.',
+        outcome:
+          'Customers see the real delivery fee before they pay, and the team updates prices in the admin in seconds.',
+      },
+      results: [
+        { value: '3', label: 'parts built: storefront, admin and API' },
+        { value: '37', label: 'states and the FCT covered at checkout, down to local area' },
+        { value: 'Live', label: 'taking orders at wearable.ng' },
+        { value: '—', label: 'Add orders, revenue or customers', placeholder: true },
+      ],
+    },
+  },
+  {
     slug: 'munkai',
     name: 'Munkai',
     kind: 'mobile',
