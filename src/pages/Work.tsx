@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { earlierWork, projects } from '../data/site'
-import { DarkBand, Label } from '../components/ui'
+import { DarkBand } from '../components/ui'
 import { Reveal, WordsReveal } from '../components/motion'
 import { ProjectCard } from '../components/ProjectCard'
 import { usePageTitle } from '../lib/usePageTitle'
@@ -15,7 +15,7 @@ const filters = [
 type Filter = (typeof filters)[number]['id']
 
 export default function Work() {
-  usePageTitle('Work')
+  usePageTitle('Work', 'Selected work by Emmanuel Anyigor: TEGO, Munkai, LovePing and Kopa Xclusive. Mobile apps, admin dashboards and product websites, from first commit to the stores.')
   const [filter, setFilter] = useState<Filter>('all')
   const shown = projects.filter((p) => filter === 'all' || p.kind === filter)
 
@@ -23,12 +23,10 @@ export default function Work() {
     <>
       <DarkBand>
         <div className="container-x flex flex-col gap-10 pb-16 pt-32 md:pb-20 md:pt-40">
-          <Label dark>Work · 2022 – 2026</Label>
           <div className="flex flex-wrap items-end justify-between gap-10">
             <WordsReveal
               immediate
               text="Selected projects and case studies."
-              accent="case studies."
               className="max-w-4xl text-[clamp(44px,6.4vw,96px)] font-[450] leading-[0.98] tracking-[-0.035em]"
             />
             <div role="group" aria-label="Filter projects" className="flex rounded-xl border border-line-dark p-1">
@@ -85,7 +83,6 @@ export default function Work() {
         <section aria-labelledby="earlier-h" className="flex flex-col gap-8 pt-24 md:pt-32">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="flex flex-col gap-5">
-              <Label>Earlier work</Label>
               <h2 id="earlier-h" className="text-[clamp(32px,3.6vw,48px)] font-[450] leading-[1.05] tracking-[-0.03em]">
                 Client and in-house projects.
               </h2>

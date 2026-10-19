@@ -98,10 +98,7 @@ export function Nav() {
                 to="/contact"
                 className="label group ml-2 inline-flex min-h-11 items-center gap-2.5 rounded-lg bg-paper px-5 text-ink transition-colors hover:bg-accent"
               >
-                Let's talk{' '}
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+                Let's talk
               </Link>
             </div>
             <button
@@ -153,7 +150,7 @@ export function Nav() {
             </nav>
             <div className="mt-auto flex flex-col gap-3">
               <span className="label inline-flex items-center gap-2 text-muted-dark">
-                <LiveDot /> Open to roles · {profile.location}
+                <LiveDot /> Open to new roles, {profile.location}
               </span>
               <a
                 href={cvHref}

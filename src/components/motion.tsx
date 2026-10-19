@@ -160,13 +160,15 @@ export function useScaleIn<T extends HTMLElement>() {
   useEffect(() => {
     if (reduced || !ref.current) return
     const el = ref.current
+    // tighter corners on phones, to match the card's own rounded-[14px] md:rounded-[24px]
+    const wide = window.matchMedia('(min-width: 768px)').matches
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
-        { scale: 0.92, borderRadius: '48px' },
+        { scale: 0.92, borderRadius: wide ? '48px' : '28px' },
         {
           scale: 1,
-          borderRadius: '24px',
+          borderRadius: wide ? '24px' : '14px',
           ease: 'none',
           scrollTrigger: { trigger: el, start: 'top bottom', end: 'top 35%', scrub: true },
         },

@@ -2,26 +2,26 @@ import { Link, useLocation } from 'react-router-dom'
 import { profile } from '../data/site'
 import { ButtonLink, CopyEmail, Label, cvHref } from './ui'
 import { WordsReveal } from './motion'
+import { SmokeWordmark } from './SmokeWordmark'
 
 export function Footer() {
   const onContact = useLocation().pathname === '/contact'
   const socials = [
     profile.linkedin && { label: 'LinkedIn', href: profile.linkedin },
     { label: 'GitHub', href: profile.github },
+    { label: 'X', href: profile.x },
     { label: 'CV', href: cvHref },
   ].filter(Boolean) as { label: string; href: string }[]
 
   return (
-    <footer className={`rounded-t-[28px] bg-ink text-paper md:rounded-t-[40px] ${onContact ? 'mt-3' : 'mt-24 md:mt-32'}`}>
-      <div className={`container-x flex flex-col gap-20 pb-10 md:gap-24 ${onContact ? 'pt-14' : 'pt-20 md:pt-28'}`}>
+    <footer className={`rounded-t-[18px] bg-ink text-paper md:rounded-t-[40px] ${onContact ? 'mt-3' : 'mt-24 md:mt-32'}`}>
+      <div className={`container-x flex flex-col gap-20 pb-8 md:gap-24 ${onContact ? 'pt-14' : 'pt-20 md:pt-28'}`}>
         {!onContact && (
           <div className="flex flex-wrap items-end justify-between gap-10">
             <div className="flex max-w-4xl flex-[1_1_560px] flex-col gap-6">
-              <Label dark>Let's collaborate</Label>
               <WordsReveal
                 as="h2"
                 text="Have a product to build? Let's talk."
-                accent="Let's talk."
                 className="text-[clamp(44px,6.4vw,96px)] font-[450] leading-[0.98] tracking-[-0.035em]"
               />
             </div>
@@ -40,7 +40,7 @@ export function Footer() {
             <span className="text-[15px] leading-relaxed text-muted-dark">
               {profile.role}
               <br />
-              {profile.location} · {profile.timezone}
+              {profile.location}, {profile.timezone}
             </span>
           </div>
           <nav aria-label="Footer" className="flex flex-col gap-2">
@@ -84,6 +84,8 @@ export function Footer() {
           <span>Built with React, GSAP and Framer Motion</span>
         </div>
       </div>
+      <SmokeWordmark text={profile.name.split(' ')[0]} />
     </footer>
   )
 }
+

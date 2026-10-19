@@ -13,7 +13,7 @@ export function ProjectCard({ p, tall = false }: { p: Project; tall?: boolean })
     <Link to={`/work/${p.slug}`} className="group flex flex-col gap-5" aria-label={`${p.name}: ${p.line}`}>
       <div
         ref={media}
-        className={`relative flex items-end justify-center gap-4 overflow-hidden rounded-[24px] px-6 pt-16 ${
+        className={`relative flex items-end justify-center gap-4 overflow-hidden rounded-[14px] md:rounded-[24px] px-6 pt-16 ${
           tall ? 'h-[440px] md:h-[520px]' : 'h-[380px] md:h-[440px]'
         }`}
         style={{ background: p.palette.bg }}
@@ -26,6 +26,7 @@ export function ProjectCard({ p, tall = false }: { p: Project; tall?: boolean })
         {!first && p.screens.desktop ? (
           <BrowserShot
             name={p.screens.desktop}
+            video={p.video.desktop}
             alt={`${p.name} dashboard`}
             className={`h-[80%] w-[94%] translate-y-8 transition-transform duration-700 ${ease} group-hover:translate-y-4`}
           />
@@ -34,6 +35,7 @@ export function ProjectCard({ p, tall = false }: { p: Project; tall?: boolean })
             {first && (
               <PhoneShot
                 name={first}
+                video={p.video.phone}
                 alt={`${p.name} app screen`}
                 className={`h-[84%] w-[44%] max-w-[200px] transition-transform duration-700 ${ease} group-hover:-translate-y-3`}
               />

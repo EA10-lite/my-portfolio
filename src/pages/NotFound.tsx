@@ -2,7 +2,7 @@ import { ButtonLink, DarkBand, Label } from '../components/ui'
 import { usePageTitle } from '../lib/usePageTitle'
 
 export default function NotFound() {
-  usePageTitle('Page not found')
+  usePageTitle('Page not found', undefined, true)
   return (
     <DarkBand>
       <div className="container-x flex min-h-[70vh] flex-col justify-center gap-8 pb-20 pt-32">

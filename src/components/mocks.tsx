@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import type { Palette } from '../data/site'
 
 /** A simple phone frame with abstract app UI in the project's colours. */
@@ -92,6 +93,44 @@ export function Shot({ label, className = '' }: { label: string; className?: str
 }
 
 export const screenSrc = (name: string) => `${import.meta.env.BASE_URL}screens/${name}.webp`
+const videoSrc = (name: string, ext: 'mp4' | 'webm' | 'webp') => `${import.meta.env.BASE_URL}videos/${name}.${ext}`
+
+/**
+ * A muted, looping screen recording. It only plays while on screen, and shows its
+ * first frame as a still when the visitor prefers reduced motion.
+ */
+export function LoopVideo({ name, label, className = '' }: { name: string; label: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !still.matches) v.play().catch(() => {})
+        else v.pause()
+      },
+      { threshold: 0.2 },
+    )
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+  return (
+    <video
+      ref={ref}
+      className={className}
+      poster={videoSrc(name, 'webp')}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={label}
+    >
+      <source src={videoSrc(name, 'webm')} type="video/webm" />
+      <source src={videoSrc(name, 'mp4')} type="video/mp4" />
+    </video>
+  )
+}
 
 /** A real app screenshot inside a phone frame. `cropped` hides the bottom bezel (bleeds off the card). */
 export function PhoneShot({
@@ -100,28 +139,28 @@ export function PhoneShot({
   className = '',
   cropped = true,
   eager = false,
+  video,
 }: {
   name: string
   alt: string
   className?: string
   cropped?: boolean
   eager?: boolean
+  /** Name of a screen recording in public/videos; replaces the still when given. */
+  video?: string
 }) {
+  const inner = `block h-full w-full object-cover object-top ${cropped ? 'rounded-t-[23px]' : 'rounded-[25px]'}`
   return (
     <div
       className={`overflow-hidden bg-[#050708] p-[7px] shadow-[0_30px_60px_rgba(0,0,0,0.3)] ${
         cropped ? 'rounded-t-[30px] pb-0' : 'rounded-[32px]'
       } ${className}`}
     >
-      <img
-        src={screenSrc(name)}
-        alt={alt}
-        loading={eager ? 'eager' : 'lazy'}
-        decoding="async"
-        width={390}
-        height={844}
-        className={`block h-full w-full object-cover object-top ${cropped ? 'rounded-t-[23px]' : 'rounded-[25px]'}`}
-      />
+      {video ? (
+        <LoopVideo name={video} label={alt} className={inner} />
+      ) : (
+        <img src={screenSrc(name)} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" width={390} height={844} className={inner} />
+      )}
     </div>
   )
 }
@@ -132,11 +171,13 @@ export function BrowserShot({
   alt,
   className = '',
   eager = false,
+  video,
 }: {
   name: string
   alt: string
   className?: string
   eager?: boolean
+  video?: string
 }) {
   return (
     <div className={`flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.3)] ${className}`}>
@@ -145,15 +186,19 @@ export function BrowserShot({
         <span className="h-2 w-2 rounded-full bg-[#E1DED8]" />
         <span className="h-2 w-2 rounded-full bg-[#E1DED8]" />
       </div>
-      <img
-        src={screenSrc(name)}
-        alt={alt}
-        loading={eager ? 'eager' : 'lazy'}
-        decoding="async"
-        width={1440}
-        height={1000}
-        className="block min-h-0 w-full flex-1 object-cover object-left-top"
-      />
+      {video ? (
+        <LoopVideo name={video} label={alt} className="block min-h-0 w-full flex-1 object-cover object-left-top" />
+      ) : (
+        <img
+          src={screenSrc(name)}
+          alt={alt}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          width={1440}
+          height={1000}
+          className="block min-h-0 w-full flex-1 object-cover object-left-top"
+        />
+      )}
     </div>
   )
 }

@@ -21,7 +21,7 @@ const field =
   'min-h-[52px] w-full rounded-lg border border-line-dark bg-ink-2 px-4 text-base text-paper placeholder:text-[#6B7479] transition-colors focus:border-accent focus:outline-none'
 
 export default function Contact() {
-  usePageTitle('Contact')
+  usePageTitle('Contact', 'Get in touch with Emmanuel Anyigor about a mobile app, dashboard or product website. Based in Lagos (GMT+1), working with teams anywhere.')
   const [topic, setTopic] = useState(topics[0].id)
   const [sent, setSent] = useState(false)
   const cur = topics.find((t) => t.id === topic)!
@@ -50,11 +50,9 @@ export default function Contact() {
     <DarkBand>
       <div className="container-x flex flex-wrap items-start gap-16 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-8">
-          <Label dark>Contact</Label>
           <WordsReveal
             immediate
             text="Let's work together."
-            accent="together."
             className="text-[clamp(44px,6vw,96px)] font-[450] leading-[0.98] tracking-[-0.035em]"
           />
           <Reveal delay={0.3}>
@@ -63,7 +61,7 @@ export default function Contact() {
             </p>
           </Reveal>
           <Reveal delay={0.35} className="flex flex-col gap-3">
-            <Label dark className="text-[12px]">
+            <Label dark>
               Prefer email?
             </Label>
             <CopyEmail />
@@ -71,7 +69,8 @@ export default function Contact() {
           <Reveal delay={0.4}>
             <ul className="border-t border-line-dark">
               {[
-                { label: 'GitHub', href: profile.github, note: 'emmanuelanyigor' },
+                { label: 'GitHub', href: profile.github, note: profile.handle },
+                { label: 'X', href: profile.x, note: profile.xHandle },
                 ...(profile.linkedin ? [{ label: 'LinkedIn', href: profile.linkedin, note: 'Profile' }] : []),
                 { label: 'CV', href: cvHref, note: 'PDF' },
               ].map((l) => (
@@ -95,12 +94,12 @@ export default function Contact() {
             </ul>
           </Reveal>
           <span className="inline-flex items-center gap-2.5 text-[15px] text-soft-dark">
-            <LiveDot /> {profile.location} · {profile.timezone} · remote or on-site
+            <LiveDot /> {profile.location} ({profile.timezone}), remote or on-site
           </span>
         </div>
 
         <Reveal delay={0.2} className="min-w-0 flex-[1_1_540px]">
-          <form onSubmit={onSubmit} className="flex flex-col gap-6 rounded-[24px] border border-line-dark bg-[#0E1316] p-6 md:p-10">
+          <form onSubmit={onSubmit} className="flex flex-col gap-6 rounded-[14px] md:rounded-[24px] border border-line-dark bg-[#0E1316] p-6 md:p-10">
             <fieldset className="flex flex-col gap-3">
               <legend className="mb-3 text-[15px] font-semibold">What's this about?</legend>
               <div className="grid grid-cols-2 gap-2.5">
@@ -164,10 +163,7 @@ export default function Contact() {
                 type="submit"
                 className="label group inline-flex min-h-[52px] items-center gap-3 rounded-lg bg-accent px-7 text-ink transition-colors hover:bg-accent-hover"
               >
-                Send message{' '}
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+                Send message
               </button>
             </div>
           </form>

@@ -2,13 +2,18 @@
 
 export const profile = {
   name: 'Emmanuel Anyigor',
-  short: 'anyigor',
+  short: 'ea10',
+  handle: 'EA10-lite',
+  /** The live site address, used for canonical links, the sitemap and share previews. */
+  url: 'https://ea10.vercel.app',
   role: 'Frontend & Mobile Engineer',
   location: 'Lagos, Nigeria',
   timezone: 'GMT+1',
   email: 'emanuelanyigor@gmail.com',
-  github: 'https://github.com/emmanuelanyigor',
-  linkedin: '', // add your LinkedIn URL to show the link
+  github: 'https://github.com/EA10-lite',
+  linkedin: 'https://www.linkedin.com/in/emmanuel-anyigor-a61287180/',
+  x: 'https://x.com/anyigoremmanue4',
+  xHandle: '@anyigoremmanue4',
   cv: 'Emmanuel_Anyigor_CV.pdf',
   available: true,
   intro:
@@ -57,6 +62,8 @@ export type Project = {
   palette: Palette
   /** Real screens captured from the app's code (sample data), in public/screens. */
   screens: { phones: string[]; desktop?: string }
+  /** Looping screen recordings in public/videos (sample data), for the main phone and the desktop view. */
+  video: { phone?: string; desktop?: string }
   links?: { label: string; href: string }[]
   caseStudy: CaseSection
 }
@@ -78,6 +85,7 @@ export const projects: Project[] = [
       'TEGO needed an app for customers, tools for its team and a website for the public. I built all three and took the app through Google Play and App Store release.',
     palette: { bg: '#A9DBFB', fg: '#0A0E11', screen: '#F3F9FE', ink: '#0A0E11', accent: '#33ABF7', block: '#DDEFFC' },
     screens: { phones: ['tego-home', 'tego-providers'], desktop: 'tego-admin' },
+    video: { phone: 'tego-app', desktop: 'tego-admin' },
     links: [
       { label: 'Google Play', href: '' },
       { label: 'App Store', href: '' },
@@ -137,6 +145,7 @@ export const projects: Project[] = [
       'Munkai already had a web platform for reading and publishing stories. I rebuilt it as a native app, screen by screen, matching its design system on iOS and Android.',
     palette: { bg: '#141A44', fg: '#FFFFFF', screen: '#0B1033', ink: '#E9EEFF', accent: '#8FD3FF', block: '#1C2456' },
     screens: { phones: ['munkai-home', 'munkai-publication', 'munkai-reader', 'munkai-studio'] },
+    video: { phone: 'munkai' },
     caseStudy: {
       brief: [
         'The web app was the source of truth for design, features and flows. The goal was a native app that felt like Munkai, not a wrapped website.',
@@ -192,6 +201,7 @@ export const projects: Project[] = [
       'LovePing helps couples send love notes and gift nudges. I audited the whole app, planned App 2.0, and moved it from NativeWind to plain React Native styling while keeping its look.',
     palette: { bg: '#0F3324', fg: '#FFFFFF', screen: '#05231A', ink: '#FFFFFF', accent: '#48D962', block: '#0F3324' },
     screens: { phones: ['loveping-home', 'loveping-messages', 'loveping-gifts'] },
+    video: { phone: 'loveping' },
     caseStudy: {
       brief: [
         'The team wanted to drop NativeWind and move to StyleSheet.create without losing any features or changing the experience users knew.',
@@ -248,6 +258,7 @@ export const projects: Project[] = [
       'Kopa Xclusive lets NYSC corps members buy from vendors now and repay a month later. I worked on the admin dashboard and designed the public landing page.',
     palette: { bg: '#008751', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0A0E11', accent: '#008751', block: '#E3F1EA' },
     screens: { phones: [], desktop: 'kopa-dashboard' },
+    video: { desktop: 'kopa-dashboard' },
     caseStudy: {
       brief: [
         'Two audiences, two needs: corps members must understand exactly how credit and repayment work, and the operations team needs control over orders, vendors and withdrawals.',
