@@ -187,7 +187,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'loveping',
-    name: 'LovePing',
+    name: 'Loveping',
     kind: 'mobile',
     role: 'Mobile engineer',
     year: '2026',
@@ -198,7 +198,7 @@ export const projects: Project[] = [
     line: 'An app audit and migration off NativeWind, with a tab bar that fits every phone.',
     headline: 'Rebuilding a live app’s foundations without changing how it feels',
     summary:
-      'LovePing helps couples send love notes and gift nudges. I audited the whole app, planned App 2.0, and moved it from NativeWind to plain React Native styling while keeping its look.',
+      'Loveping helps couples send love notes and gift nudges. I audited the whole app, planned App 2.0, and moved it from NativeWind to plain React Native styling while keeping its look.',
     palette: { bg: '#0F3324', fg: '#FFFFFF', screen: '#05231A', ink: '#FFFFFF', accent: '#48D962', block: '#0F3324' },
     screens: { phones: ['loveping-home', 'loveping-messages', 'loveping-gifts'] },
     video: { phone: 'loveping' },
@@ -336,7 +336,7 @@ export const helps = [
   },
   {
     q: 'Inherited a codebase that needs a reset?',
-    a: 'I audit first, plan the move screen by screen, then migrate without breaking what users rely on, as I did moving LovePing off NativeWind.',
+    a: 'I audit first, plan the move screen by screen, then migrate without breaking what users rely on, as I did moving Loveping off NativeWind.',
     cta: 'Plan a migration',
     slug: 'loveping',
   },

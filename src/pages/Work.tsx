@@ -15,7 +15,7 @@ const filters = [
 type Filter = (typeof filters)[number]['id']
 
 export default function Work() {
-  usePageTitle('Work', 'Selected work by Emmanuel Anyigor: TEGO, Munkai, LovePing and Kopa Xclusive. Mobile apps, admin dashboards and product websites, from first commit to the stores.')
+  usePageTitle('Work', 'Selected work by Emmanuel Anyigor: TEGO, Munkai, Loveping and Kopa Xclusive. Mobile apps, admin dashboards and product websites, from first commit to the stores.')
   const [filter, setFilter] = useState<Filter>('all')
   const shown = projects.filter((p) => filter === 'all' || p.kind === filter)
 
