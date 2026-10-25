@@ -58,7 +58,7 @@ export default function Home() {
             <Link
               to={`/work/${tego.slug}`}
               aria-label="Featured work: TEGO"
-              className="group relative block h-[420px] overflow-hidden rounded-[14px] md:h-[600px] md:rounded-[24px]"
+              className="anime-card group relative block h-[420px] overflow-hidden rounded-[14px] md:h-[600px] md:rounded-[24px]"
               style={{ background: tego.palette.bg }}
             >
               <div ref={board} className="absolute left-[8%] right-[-6%] top-12 hidden h-[440px] sm:block md:left-[26%] md:top-16 md:h-[520px]">
@@ -133,7 +133,7 @@ export default function Home() {
                 <Link
                   to={`/work/${p.slug}`}
                   aria-label={`See ${p.name}`}
-                  className="group hidden h-60 flex-[0_0_240px] items-end justify-center overflow-hidden rounded-[12px] md:rounded-[20px] pt-7 md:flex"
+                  className="anime-card group hidden h-60 flex-[0_0_240px] items-end justify-center overflow-hidden rounded-[12px] md:rounded-[20px] pt-7 md:flex"
                   style={{ background: p.palette.bg }}
                 >
                   {p.screens.phones[0] ? (
@@ -189,7 +189,7 @@ export default function Home() {
 
 function Capabilities() {
   return (
-    <section aria-labelledby="cap-h" className="mx-3 mt-24 rounded-[18px] bg-ink text-paper md:mx-5 md:mt-32 md:rounded-[40px]">
+    <section aria-labelledby="cap-h" className="band-dark mx-3 mt-24 rounded-[18px] bg-ink text-paper md:mx-5 md:mt-32 md:rounded-[40px]">
       <div className="container-x flex flex-col gap-14 py-20 md:py-28">
         <div className="flex max-w-3xl flex-col gap-5">
           <WordsReveal

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Logo, cvHref, LiveDot } from './ui'
 import { profile } from '../data/site'
 import { useLenis } from '../lib/smooth'
+import { AnimeToggle } from '../lib/theme'
 
 const links = [
   { to: '/work', label: 'Work' },
@@ -58,8 +59,8 @@ export function Nav() {
         <div className="container-x pt-3">
           <nav
             aria-label="Main"
-            className={`flex items-center justify-between gap-4 rounded-2xl px-4 py-2.5 text-paper transition-all duration-500 md:px-5 ${
-              scrolled ? 'bg-ink/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl' : 'bg-transparent'
+            className={`nav-pill flex items-center justify-between gap-4 rounded-2xl px-4 py-2.5 text-paper transition-all duration-500 md:px-5 ${
+              scrolled ? 'is-scrolled ' + 'bg-ink/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl' : 'bg-transparent'
             }`}
           >
             <Logo />
@@ -94,6 +95,7 @@ export function Nav() {
               >
                 CV ↓
               </a>
+              <AnimeToggle compact className="ml-1" />
               <Link
                 to="/contact"
                 className="label group ml-2 inline-flex min-h-11 items-center gap-2.5 rounded-lg bg-paper px-5 text-ink transition-colors hover:bg-accent"
@@ -101,6 +103,8 @@ export function Nav() {
                 Let's talk
               </Link>
             </div>
+            <div className="flex items-center gap-2 md:hidden">
+            <AnimeToggle compact />
             <button
               type="button"
               className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line-dark md:hidden"
@@ -114,6 +118,7 @@ export function Nav() {
                 <span className={`absolute left-0 h-[1.6px] w-full bg-paper transition-all ${open ? 'top-1.5 -rotate-45' : 'top-3'}`} />
               </span>
             </button>
+            </div>
           </nav>
         </div>
       </header>
@@ -122,7 +127,7 @@ export function Nav() {
         {open && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-0 z-40 flex flex-col bg-ink px-5 pb-8 pt-28 text-paper md:hidden"
+            className="band-dark fixed inset-0 z-40 flex flex-col bg-ink px-5 pb-8 pt-28 text-paper md:hidden"
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
@@ -149,6 +154,7 @@ export function Nav() {
               ))}
             </nav>
             <div className="mt-auto flex flex-col gap-3">
+              <AnimeToggle className="w-fit" />
               <span className="label inline-flex items-center gap-2 text-muted-dark">
                 <LiveDot /> Open to new roles, {profile.location}
               </span>

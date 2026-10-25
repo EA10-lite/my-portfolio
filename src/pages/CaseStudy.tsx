@@ -71,7 +71,7 @@ export default function CaseStudy() {
 
         <div className="container-x pb-12 md:pb-16">
           <figure className="m-0 flex flex-col gap-3">
-            <div ref={media} className="relative h-[460px] overflow-hidden rounded-[14px] md:rounded-[24px] md:h-[640px]" style={{ background: p.palette.bg }}>
+            <div ref={media} className="anime-card relative h-[460px] overflow-hidden rounded-[14px] md:rounded-[24px] md:h-[640px]" style={{ background: p.palette.bg }}>
               {phones.length === 0 && p.screens.desktop ? (
                 <div className="absolute inset-x-[5%] bottom-[-40px] top-12">
                   <BrowserShot name={p.screens.desktop} video={p.video.desktop} alt={`${p.name} dashboard`} eager className="h-full" />
@@ -192,7 +192,7 @@ export default function CaseStudy() {
                 <ul className="flex w-max gap-4 md:w-auto md:grid md:grid-cols-[repeat(auto-fill,minmax(180px,220px))]">
                   {phones.map((name) => (
                     <Reveal as="li" key={name} className="w-[200px] md:w-auto">
-                      <div className="rounded-[14px] md:rounded-[24px] p-3" style={{ background: p.palette.bg }}>
+                      <div className="anime-card rounded-[14px] md:rounded-[24px] p-3" style={{ background: p.palette.bg }}>
                         <PhoneShot name={name} alt={`${p.name}: ${name.split('-').slice(1).join(' ')} screen`} cropped={false} className="aspect-[390/844] w-full" />
                       </div>
                       <span className="mt-3 block text-sm capitalize text-muted">{name.split('-').slice(1).join(' ')}</span>
@@ -203,7 +203,7 @@ export default function CaseStudy() {
             </section>
           )}
 
-          <section id="problem" className="flex scroll-mt-28 flex-col gap-7 rounded-[14px] md:rounded-[24px] bg-ink p-8 text-paper md:p-12">
+          <section id="problem" className="band-dark flex scroll-mt-28 flex-col gap-7 rounded-[14px] md:rounded-[24px] bg-ink p-8 text-paper md:p-12">
             <span className="text-[16px] text-muted-dark">The hardest problem</span>
             <h2 className="text-[clamp(28px,3vw,40px)] font-[450] leading-[1.15] tracking-[-0.025em]">{cs.problem.title}</h2>
             <div className="grid gap-8 md:grid-cols-3">
@@ -229,7 +229,7 @@ export default function CaseStudy() {
                 <Reveal
                   key={r.label}
                   delay={i * 0.06}
-                  className={`flex flex-col gap-2 rounded-2xl p-6 ${r.placeholder ? 'border border-dashed border-[#C9CED1]' : 'bg-paper-2'}`}
+                  className={`anime-card flex flex-col gap-2 rounded-2xl p-6 ${r.placeholder ? 'border border-dashed border-[#C9CED1]' : 'bg-paper-2'}`}
                 >
                   <span className={`text-[44px] font-[450] leading-none tracking-[-0.03em] ${r.placeholder ? 'text-[#9AA2A6]' : ''}`}>
                     {r.value}
@@ -260,7 +260,7 @@ export default function CaseStudy() {
       <div className="container-x pt-24 md:pt-32">
         <Link
           to={`/work/${next.slug}`}
-          className="group flex flex-wrap items-center justify-between gap-8 overflow-hidden rounded-[14px] md:rounded-[24px] p-8 md:p-12"
+          className="anime-card group flex flex-wrap items-center justify-between gap-8 overflow-hidden rounded-[14px] md:rounded-[24px] p-8 md:p-12"
           style={{ background: next.palette.bg, color: next.palette.fg }}
         >
           <div className="flex flex-col gap-3">

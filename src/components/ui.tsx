@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
 }
 
 const base =
-  'group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-lg px-6 text-[16px] font-semibold tracking-[-0.01em] transition-colors duration-200'
+  'btn group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-lg px-6 text-[16px] font-semibold tracking-[-0.01em] transition-colors duration-200'
 
 function Arrow() {
   return (
@@ -130,7 +130,7 @@ export function CopyEmail({ dark = true, className = '' }: { dark?: boolean; cla
 export function Tag({ children, light = true }: { children: ReactNode; light?: boolean }) {
   return (
     <span
-      className={`rounded-full px-3 py-1.5 text-[13px] font-medium ${
+      className={`tag rounded-full px-3 py-1.5 text-[13px] font-medium ${
         light ? 'bg-white/90 text-ink' : 'border border-line-dark text-soft-dark'
       }`}
     >
@@ -141,5 +141,5 @@ export function Tag({ children, light = true }: { children: ReactNode; light?: b
 
 /** Dark hero band with rounded bottom corners, used at the top of every page. */
 export function DarkBand({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <section className={`rounded-b-[18px] bg-ink text-paper md:rounded-b-[40px] ${className}`}>{children}</section>
+  return <section className={`band-dark rounded-b-[18px] bg-ink text-paper md:rounded-b-[40px] ${className}`}>{children}</section>
 }

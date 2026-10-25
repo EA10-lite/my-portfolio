@@ -98,3 +98,155 @@ html.lenis body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Big footer email: the underline wipes away on hover */
+.footer-email-text {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  padding-bottom: 0.08em;
+  transition: background-size 0.5s var(--ease-out-expo), background-position 0s 0.5s;
+}
+.footer-email:hover .footer-email-text {
+  background-position: 100% 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.5s var(--ease-out-expo);
+}
+
+/* Anime footer */
+@keyframes anime-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
+@keyframes anime-drift { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+@keyframes anime-fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate3d(var(--sway, 60px), 110vh, 0) rotate(540deg); opacity: 0.9; }
+}
+@keyframes anime-spin { to { transform: rotate(360deg); } }
+.anime-twinkle { animation: anime-twinkle 2.8s ease-in-out infinite; }
+.anime-drift { animation: anime-drift 18s ease-in-out infinite alternate; }
+.anime-petal { animation: anime-fall linear infinite; }
+.anime-lines { animation: anime-spin 90s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .anime-twinkle, .anime-drift, .anime-petal, .anime-lines { animation: none; }
+  .anime-petal { display: none; }
+}
+
+/* ───────────── Anime mode (site-wide) ───────────── */
+.anime-toggle {
+  border: 1px solid var(--color-line-dark);
+  color: var(--color-paper);
+}
+.anime-toggle:hover { border-color: var(--color-muted-dark); }
+
+:root[data-theme='anime'] {
+  --color-ink: #1b1446;
+  --color-ink-2: #2a1d5c;
+  --color-line-dark: #4b3a8c;
+  --color-muted-dark: #c9beea;
+  --color-soft-dark: #e2daf7;
+
+  --color-paper: #fff7ee;
+  --color-paper-2: #ffe9f2;
+  --color-line: #e8d6ef;
+  --color-muted: #5b4e86;
+  --color-body: #3d3266;
+
+  --color-accent: #ff4fa3;
+  --color-accent-hover: #ff74b8;
+  --anime-ink: #1b1446;
+  --anime-yellow: #ffe14d;
+}
+
+:root[data-theme='anime'] body {
+  background-color: var(--color-paper);
+  background-image: radial-gradient(rgb(255 79 163 / 0.13) 1.2px, transparent 1.6px);
+  background-size: 14px 14px;
+}
+
+/* Dark sections become a twilight sky with stars and soft speed lines */
+:root[data-theme='anime'] .band-dark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 28% 42%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 46% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 64% 30%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 82% 16%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 90% 48%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 62%, #fff 50%, transparent 51%),
+    linear-gradient(170deg, #1b1446 0%, #33196a 45%, #6b2a86 78%, #a8387f 100%);
+}
+:root[data-theme='anime'] .band-dark::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20% auto auto;
+  width: 120%;
+  aspect-ratio: 1;
+  z-index: -1;
+  background: repeating-conic-gradient(from 0deg, rgb(255 255 255 / 0.07) 0deg 1.2deg, transparent 1.2deg 7deg);
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
+  mask-image: radial-gradient(closest-side, #000, transparent);
+  pointer-events: none;
+}
+
+/* Headings: chunky manga titles with an offset colour shadow */
+:root[data-theme='anime'] h1,
+:root[data-theme='anime'] h2 {
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  text-shadow: 3px 3px 0 var(--anime-yellow);
+}
+:root[data-theme='anime'] .band-dark h1,
+:root[data-theme='anime'] .band-dark h2 {
+  text-shadow: 4px 4px 0 #ff4fa3;
+}
+:root[data-theme='anime'] h3 { font-weight: 700; }
+
+/* Cards and panels: ink outline and a hard shadow */
+:root[data-theme='anime'] .anime-card {
+  border: 3px solid var(--anime-ink);
+  box-shadow: 6px 6px 0 var(--anime-ink);
+  transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
+}
+:root[data-theme='anime'] a.anime-card:hover,
+:root[data-theme='anime'] a:hover > .anime-card {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--anime-ink);
+}
+:root[data-theme='anime'] .band-dark .anime-card { border-color: #fff7ee; box-shadow: 6px 6px 0 #ff4fa3; }
+
+/* Buttons and tags */
+:root[data-theme='anime'] .btn {
+  border: 3px solid var(--anime-ink);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--anime-ink);
+  font-weight: 800;
+}
+:root[data-theme='anime'] .btn:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--anime-ink); }
+:root[data-theme='anime'] .band-dark .btn { border-color: #fff7ee; box-shadow: 4px 4px 0 #ff4fa3; }
+:root[data-theme='anime'] .tag {
+  border: 2px solid var(--anime-ink);
+  background: #fff;
+  color: var(--anime-ink);
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--anime-ink);
+}
+
+/* Nav pill and the switch */
+:root[data-theme='anime'] .nav-pill.is-scrolled {
+  background: #1b1446;
+  border: 3px solid #fff7ee;
+  box-shadow: 5px 5px 0 #ff4fa3;
+  backdrop-filter: none;
+}
+:root[data-theme='anime'] .anime-toggle {
+  border: 3px solid var(--anime-ink);
+  background: #fff;
+  color: var(--anime-ink);
+  box-shadow: 3px 3px 0 var(--anime-ink);
+}
+
+:root[data-theme='anime'] ::selection { background: var(--anime-yellow); color: var(--anime-ink); }

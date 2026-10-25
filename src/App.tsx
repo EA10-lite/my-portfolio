@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { SmoothScroll } from './lib/smooth'
+import { ThemeProvider } from './lib/theme'
 import { Layout } from './components/Layout'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
@@ -16,6 +17,7 @@ const Router = import.meta.env.VITE_HASH_ROUTER === '1' ? HashRouter : BrowserRo
 export default function App() {
   return (
     <Router>
+      <ThemeProvider>
       <SmoothScroll>
         <Routes>
           <Route element={<Layout />}>
@@ -28,6 +30,7 @@ export default function App() {
           </Route>
         </Routes>
       </SmoothScroll>
+      </ThemeProvider>
     </Router>
   )
 }

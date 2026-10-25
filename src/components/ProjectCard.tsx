@@ -13,7 +13,7 @@ export function ProjectCard({ p, tall = false }: { p: Project; tall?: boolean })
     <Link to={`/work/${p.slug}`} className="group flex flex-col gap-5" aria-label={`${p.name}: ${p.line}`}>
       <div
         ref={media}
-        className={`relative flex items-end justify-center gap-4 overflow-hidden rounded-[14px] md:rounded-[24px] px-6 pt-16 ${
+        className={`anime-card relative flex items-end justify-center gap-4 overflow-hidden rounded-[14px] md:rounded-[24px] px-6 pt-16 ${
           tall ? 'h-[440px] md:h-[520px]' : 'h-[380px] md:h-[440px]'
         }`}
         style={{ background: p.palette.bg }}

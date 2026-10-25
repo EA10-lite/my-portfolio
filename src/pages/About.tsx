@@ -42,7 +42,7 @@ export default function About() {
               alt="Portrait of Emmanuel Anyigor"
               width={900}
               height={1125}
-              className="aspect-[4/5] w-full rounded-[14px] object-cover md:rounded-[24px]"
+              className="anime-card aspect-[4/5] w-full rounded-[14px] object-cover md:rounded-[24px]"
             />
             <div className="flex flex-wrap items-center justify-between gap-2 px-1 text-[15px]">
               <span className="inline-flex items-center gap-2">

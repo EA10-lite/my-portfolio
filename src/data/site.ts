@@ -114,12 +114,13 @@ export const projects: Project[] = [
         },
       ],
       problem: {
-        title: 'Google Play rejected a release over photo permissions',
+        title: 'Forms that disappeared behind the keyboard',
         challenge:
-          'The app asked for broad photo and video access, which Google Play now restricts for apps targeting Android 13 and above.',
+          'Reviews, support messages and service prices are typed into bottom sheets. On iOS the sheet ignored the keyboard and covered the field you were typing in. On Android the sheet and a keyboard-avoiding wrapper both reacted at once, so the screen flickered in a loop. Each fix on one platform broke the other.',
         approach:
-          'I traced every place the app used media, moved uploads to the Android system photo picker and removed the permissions from every build.',
-        outcome: 'People choose photos without opening up their whole gallery, and the update could go back through review.',
+          'I stopped treating it as one problem. On iOS these forms now open in a native modal with KeyboardAvoidingView. On Android the bottom sheet alone handles the keyboard, with no nested wrappers. I proved the pattern on one screen, then applied it to every form sheet in the app.',
+        outcome:
+          'The field you are typing in stays visible on both platforms, the flicker is gone, and new forms follow one pattern instead of another round of fixes.',
       },
       results: [
         { value: '3', label: 'products: app, dashboard and website' },
@@ -247,28 +248,32 @@ export const projects: Project[] = [
     slug: 'loveping',
     name: 'Loveping',
     kind: 'mobile',
-    role: 'Mobile engineer',
+    role: 'Mobile engineer, built version 1 and 2',
     year: '2026',
     timeline: '2026',
     platforms: 'iOS · Android',
     stack: ['React Native', 'Expo Router', 'TypeScript', 'Zustand', 'Sentry'],
-    tags: ['Migration', 'Accessibility'],
-    line: 'An app audit and migration off NativeWind, with a tab bar that fits every phone.',
-    headline: 'Rebuilding a live app’s foundations without changing how it feels',
+    tags: ['Mobile app', 'Rebuild', 'Accessibility'],
+    line: 'An app for couples that I built from scratch, then rebuilt as version 2 when its styling kept breaking.',
+    headline: 'Building an app, then rebuilding it without changing how it feels',
     summary:
-      'Loveping helps couples send love notes and gift nudges. I audited the whole app, planned App 2.0, and moved it from NativeWind to plain React Native styling while keeping its look.',
+      'Loveping helps couples send love notes, call reminders and gift nudges. I built the first version end to end, then led Loveping 2.0: a full audit and a move from NativeWind to plain React Native styling, keeping the look users knew.',
     palette: { bg: '#0F3324', fg: '#FFFFFF', screen: '#05231A', ink: '#FFFFFF', accent: '#48D962', block: '#0F3324' },
     screens: { phones: ['loveping-home', 'loveping-messages', 'loveping-gifts'] },
     video: { phone: 'loveping' },
     caseStudy: {
       brief: [
-        'The team wanted to drop NativeWind and move to StyleSheet.create without losing any features or changing the experience users knew.',
-        'Before touching code, I audited every screen, component, store and dependency, and wrote a migration plan the team could review.',
+        'I built the first version of Loveping myself: the screens, navigation, stores and API integration, styled with NativeWind.',
+        'As the app grew, the styling became the problem. Layout bugs kept coming back, and the floating tab bar behaved differently from phone to phone. Rather than keep patching, I planned version 2: the same features and the same look, on plain React Native StyleSheet.',
       ],
       built: [
         {
-          title: 'Audit and plan',
-          body: 'A full map of routes, 9 Zustand stores, services and components, with risks and a step-by-step migration order.',
+          title: 'Version 1',
+          body: 'The original app in React Native, Expo Router and TypeScript: love notes with tones, call and gift nudges, partner profiles, notifications and 9 Zustand stores.',
+        },
+        {
+          title: 'Audit and plan for 2.0',
+          body: 'A full map of routes, stores, services and components, with risks and a step-by-step migration order the team could review.',
         },
         {
           title: 'Screen migration',

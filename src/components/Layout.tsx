@@ -45,7 +45,7 @@ export function Layout() {
             </>
           )}
           <main id="main">
-            <Suspense fallback={<div className="min-h-screen rounded-b-[40px] bg-ink" />}>{outlet}</Suspense>
+            <Suspense fallback={<div className="band-dark min-h-screen rounded-b-[40px] bg-ink" />}>{outlet}</Suspense>
           </main>
           <Footer />
         </motion.div>

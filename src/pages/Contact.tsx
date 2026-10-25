@@ -99,7 +99,7 @@ export default function Contact() {
         </div>
 
         <Reveal delay={0.2} className="min-w-0 flex-[1_1_540px]">
-          <form onSubmit={onSubmit} className="flex flex-col gap-6 rounded-[14px] md:rounded-[24px] border border-line-dark bg-[#0E1316] p-6 md:p-10">
+          <form onSubmit={onSubmit} className="anime-card flex flex-col gap-6 rounded-[14px] md:rounded-[24px] border border-line-dark bg-ink-2 p-6 md:p-10">
             <fieldset className="flex flex-col gap-3">
               <legend className="mb-3 text-[15px] font-semibold">What's this about?</legend>
               <div className="grid grid-cols-2 gap-2.5">
