@@ -4,6 +4,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
+// Phones resize the viewport when the address bar hides or shows; don't re-measure scroll animations for that.
+ScrollTrigger.config({ ignoreMobileResize: true })
 
 const LenisContext = createContext<Lenis | null>(null)
 

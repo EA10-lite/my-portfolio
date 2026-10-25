@@ -111,7 +111,7 @@ export default function Home() {
           </div>
           <div className="grid gap-x-6 gap-y-14 lg:grid-cols-2">
             {projects.map((p, i) => (
-              <Reveal key={p.slug} delay={i % 2 === 1 ? 0.12 : 0}>
+              <Reveal key={p.slug} y={0} delay={i % 2 === 1 ? 0.12 : 0}>
                 <ProjectCard p={p} />
               </Reveal>
             ))}

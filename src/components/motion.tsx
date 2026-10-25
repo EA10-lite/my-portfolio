@@ -162,17 +162,35 @@ export function useScaleIn<T extends HTMLElement>() {
   useEffect(() => {
     if (reduced || !ref.current) return
     const el = ref.current
-    // tighter corners on phones, to match the card's own rounded-[14px] md:rounded-[24px]
-    const wide = window.matchMedia('(min-width: 768px)').matches
+    el.dataset.scaleIn = ''
+    // Only the scale is animated: it runs on the compositor, so videos inside don't repaint.
+    // A little scrub smoothing keeps it steady with smooth scrolling.
+    // Phones and touch screens: one smooth zoom as the card comes into view (no scrub, so no jitter
+    // from finger scrolling or the address bar). Desktop: the zoom follows the scroll.
+    const touch = window.matchMedia('(hover: none), (pointer: coarse), (max-width: 767px)').matches
     const ctx = gsap.context(() => {
+      if (touch) {
+        gsap.fromTo(
+          el,
+          { scale: 0.94 },
+          {
+            scale: 1,
+            duration: 0.9,
+            ease: 'power3.out',
+            force3D: true,
+            scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+          },
+        )
+        return
+      }
       gsap.fromTo(
         el,
-        { scale: 0.92, borderRadius: wide ? '48px' : '28px' },
+        { scale: 0.92 },
         {
           scale: 1,
-          borderRadius: wide ? '24px' : '14px',
           ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top bottom', end: 'top 35%', scrub: true },
+          force3D: true,
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'top 35%', scrub: 0.4 },
         },
       )
     })

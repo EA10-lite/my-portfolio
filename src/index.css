@@ -165,8 +165,10 @@ html.lenis body {
 }
 
 /* Dark sections become a twilight sky with stars and soft speed lines */
-:root[data-theme='anime'] .band-dark {
+:root[data-theme='anime'] .band-dark:not(.fixed) {
   position: relative;
+}
+:root[data-theme='anime'] .band-dark {
   isolation: isolate;
   overflow: hidden;
   background:
@@ -260,3 +262,17 @@ html.lenis body {
 .say-name .say-hint { opacity: 0; transform: translateY(4px) rotate(-2deg); transition: opacity 0.2s, transform 0.2s; }
 .say-name:hover .say-hint, .say-name:focus-visible .say-hint { opacity: 1; transform: translateY(0) rotate(-2deg); }
 @media (hover: none) { .say-name .say-hint { opacity: 1; transform: none; } }
+
+/* Scroll-scaled cards: keep rounded clipping steady (incl. Safari with video) and never transition transform */
+[data-scale-in] {
+  will-change: transform;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  backface-visibility: hidden;
+}
+:root[data-theme='anime'] .anime-card[data-scale-in] {
+  transition: box-shadow 0.25s var(--ease-out-expo);
+}
+:root[data-theme='anime'] a:hover > .anime-card[data-scale-in] {
+  transform: none;
+  box-shadow: 10px 10px 0 var(--anime-ink);
+}
