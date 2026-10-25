@@ -1,3 +1,4 @@
+import { useSiteReady } from './Preloader'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 import { gsap, usePrefersReducedMotion } from '../lib/smooth'
@@ -68,7 +69,8 @@ export function WordsReveal({
   const words = main.split(' ').map((w) => ({ w, accent: false }))
   if (accent && text.endsWith(accent)) accent.split(' ').forEach((w) => words.push({ w, accent: true }))
   const Tag = motion[as]
-  const show = immediate || inView
+  const siteReady = useSiteReady()
+  const show = siteReady && (immediate || inView)
 
   if (reduced) {
     const Plain = as

@@ -1,4 +1,5 @@
 import { Wordmark } from './Wordmark'
+import { ding } from '../lib/sound'
 import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { profile } from '../data/site'
@@ -62,19 +63,21 @@ export function ButtonLink({
   )
 }
 
-/** An underlined text link for secondary actions. */
-export function TextLink({ to, children, dark = false }: { to: string; children: ReactNode; dark?: boolean }) {
+/** An underlined text link for secondary actions. Pass `to` for a page, or `href` for mail/external links. */
+export function TextLink({ to, href, children, dark = false }: { to?: string; href?: string; children: ReactNode; dark?: boolean }) {
+  const cls = `inline-flex min-h-11 w-fit items-center text-[17px] font-semibold underline decoration-2 underline-offset-[6px] transition-colors ${
+    dark ? 'decoration-line-dark hover:decoration-accent' : 'decoration-line hover:decoration-accent'
+  }`
+  if (href) return <a href={href} className={cls}>{children}</a>
   return (
-    <Link
-      to={to}
-      className={`inline-flex min-h-11 w-fit items-center text-[17px] font-semibold underline decoration-2 underline-offset-[6px] transition-colors ${
-        dark ? 'decoration-line-dark hover:decoration-accent' : 'decoration-line hover:decoration-accent'
-      }`}
-    >
+    <Link to={to ?? '/'} className={cls}>
       {children}
     </Link>
   )
 }
+
+export const mailto = (subject?: string) =>
+  `mailto:${profile.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`
 
 export const cvHref = `${import.meta.env.BASE_URL}${profile.cv}`
 
@@ -109,6 +112,7 @@ export function CopyEmail({ dark = true, className = '' }: { dark?: boolean; cla
       /* clipboard may be blocked; the address is still visible */
     }
     setCopied(true)
+    if (document.documentElement.dataset.theme === 'anime') ding()
     window.setTimeout(() => setCopied(false), 1600)
   }
   return (

@@ -1,7 +1,8 @@
 import { useState, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
 import { profile } from '../data/site'
 import { footerLinks, useBackToTop, useLagosTime } from '../lib/footer'
+import { SayName, SoundToggle } from '../lib/theme'
+import { ding } from '../lib/sound'
 
 const INK = '#120A24'
 
@@ -135,6 +136,7 @@ export function AnimeFooter({ onContact, toggle }: { onContact: boolean; toggle:
       /* the address is still on screen */
     }
     setCopied(true)
+    ding()
     window.setTimeout(() => setCopied(false), 1600)
   }
 
@@ -186,7 +188,10 @@ export function AnimeFooter({ onContact, toggle }: { onContact: boolean; toggle:
       <div className="container-x relative flex flex-col pb-6 pt-14 md:pt-20">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Sticker tone="yellow" className="text-[15px]">Final episode</Sticker>
-          {toggle}
+          <div className="flex items-center gap-3">
+            <SoundToggle />
+            {toggle}
+          </div>
         </div>
 
         {/* speech bubble with manga speed lines behind it */}
@@ -225,11 +230,6 @@ export function AnimeFooter({ onContact, toggle }: { onContact: boolean; toggle:
           <button type="button" onClick={copy} aria-live="polite">
             <Sticker className="text-[15px] transition-transform hover:-translate-y-0.5">{copied ? 'Copied ✦' : 'Copy address'}</Sticker>
           </button>
-          {!onContact && (
-            <Link to="/contact">
-              <Sticker className="text-[15px] transition-transform hover:-translate-y-0.5">Use the contact page</Sticker>
-            </Link>
-          )}
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
@@ -257,7 +257,9 @@ export function AnimeFooter({ onContact, toggle }: { onContact: boolean; toggle:
         </div>
 
         <div className="mt-[min(10vw,90px)]" aria-hidden="false">
-          <AnimeWordmark text={profile.name.split(' ')[0]} />
+          <SayName block hint className="group">
+            <AnimeWordmark text={profile.name.split(' ')[0]} />
+          </SayName>
         </div>
       </div>
     </div>

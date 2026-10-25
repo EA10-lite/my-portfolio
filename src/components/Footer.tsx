@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { profile } from '../data/site'
 import { WordsReveal } from './motion'
@@ -8,7 +7,7 @@ import { footerLinks, useBackToTop, useLagosTime } from '../lib/footer'
 import { AnimeToggle, useTheme } from '../lib/theme'
 
 export function Footer() {
-  const onContact = useLocation().pathname === '/contact'
+  const onContact = false
   const { anime } = useTheme()
   const reduce = useReducedMotion()
   const mode = anime ? 'anime' : 'classic'
@@ -74,11 +73,6 @@ function ClassicFooter({ onContact, toggle }: { onContact: boolean; toggle: Reac
             </button>
           </div>
         </div>
-        {!onContact && (
-          <Link to="/contact" className="mt-4 w-fit text-[16px] text-soft-dark underline decoration-line-dark underline-offset-[6px] transition-colors hover:text-paper hover:decoration-accent">
-            Prefer a form? Use the contact page
-          </Link>
-        )}
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-x-10 gap-y-5 border-t border-line-dark pt-8 md:mt-24">
           <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[17px]">

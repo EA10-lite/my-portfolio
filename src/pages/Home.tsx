@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { capabilities, companies, helps, jobs, profile, projects } from '../data/site'
-import { ButtonLink, DarkBand, LiveDot, TextLink, cvHref } from '../components/ui'
+import { ButtonLink, DarkBand, LiveDot, TextLink, cvHref, mailto } from '../components/ui'
 import { Reveal, WordsReveal, useParallax } from '../components/motion'
 import { BrowserShot, PhoneShot } from '../components/mocks'
 import { ProjectCard } from '../components/ProjectCard'
 import { usePageTitle } from '../lib/usePageTitle'
+import { SayName } from '../lib/theme'
+import { useSiteReady } from '../components/Preloader'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
 export default function Home() {
   usePageTitle()
+  const ready = useSiteReady()
   const tego = projects[0]
   const phone = useParallax<HTMLDivElement>(120)
   const board = useParallax<HTMLDivElement>(50)
@@ -23,7 +26,7 @@ export default function Home() {
             <motion.p
               className="flex flex-wrap items-center gap-x-5 gap-y-3 text-[16px] text-muted-dark"
               initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={ready ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.8, ease }}
             >
               <span>Frontend and mobile engineer in {profile.location.split(',')[0]}</span>
@@ -41,10 +44,13 @@ export default function Home() {
             <motion.div
               className="flex flex-wrap items-end justify-between gap-x-12 gap-y-8"
               initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={ready ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.8, ease, delay: 0.6 }}
             >
-              <p className="max-w-[600px] text-[19px] leading-[1.5] text-soft-dark md:text-[21px]">{profile.intro}</p>
+              <p className="max-w-[600px] text-[19px] leading-[1.5] text-soft-dark md:text-[21px]">{profile.intro.split(profile.name)[0]}
+                <SayName className="say-inline">{profile.name}</SayName>
+                {profile.intro.split(profile.name)[1]}
+              </p>
               <div className="flex flex-wrap gap-3">
                 <ButtonLink to="/work">See the work</ButtonLink>
                 <ButtonLink href={cvHref} download variant="outline-dark">
@@ -128,7 +134,7 @@ export default function Home() {
                 <span className="flex-[0_1_240px] text-[17px] leading-snug text-body">{h.q}</span>
                 <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-7">
                   <p className="text-[24px] font-normal leading-[1.32] tracking-[-0.015em] md:text-[30px]">{h.a}</p>
-                  <TextLink to="/contact">{h.cta}</TextLink>
+                  <TextLink href={mailto(h.cta)}>{h.cta}</TextLink>
                 </div>
                 <Link
                   to={`/work/${p.slug}`}

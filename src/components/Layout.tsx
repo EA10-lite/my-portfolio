@@ -1,9 +1,11 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLocation, useOutlet } from 'react-router-dom'
 import { Nav } from './Nav'
 import { Footer } from './Footer'
 import { usePrefersReducedMotion, useLenis, ScrollTrigger } from '../lib/smooth'
+import { useTheme } from '../lib/theme'
+import { whoosh } from '../lib/sound'
 
 /** Wraps every page: navigation, a curtain transition between routes, and the footer. */
 export function Layout() {
@@ -11,6 +13,16 @@ export function Layout() {
   const outlet = useOutlet()
   const reduced = usePrefersReducedMotion()
   const lenis = useLenis()
+  const { anime } = useTheme()
+  const first = useRef(true)
+  useEffect(() => {
+    if (first.current) {
+      first.current = false
+      return
+    }
+    if (anime) whoosh(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname])
 
   // While the curtain covers the screen, jump to the top and re-measure scroll animations.
   const onExitComplete = () => {

@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
+import { installUiSounds, onSoundChange, sayName, setSoundEnabled, settle, soundEnabled, sparkle } from './sound'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 type Theme = 'classic' | 'anime'
@@ -24,6 +25,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion()
   const anime = theme === 'anime'
 
+  const animeRef = useRef(anime)
+  animeRef.current = anime
+  useEffect(() => installUiSounds(() => animeRef.current), [])
+
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', anime ? '#1B1446' : '#0A0E11')
@@ -32,7 +37,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const setAnime = (v: boolean) => {
     const next: Theme = v ? 'anime' : 'classic'
     setTheme(next)
-    if (v) setFlash((n) => n + 1)
+    if (v) {
+      setFlash((n) => n + 1)
+      sparkle()
+    } else settle()
     try {
       window.localStorage.setItem(KEY, next)
     } catch {
@@ -141,5 +149,68 @@ export function AnimeToggle({ compact = false, className = '' }: { compact?: boo
         </span>
       </span>
     </button>
+  )
+}
+
+/** Sound on/off, shown only in anime mode (classic mode is silent). */
+export function SoundToggle({ className = '' }: { className?: string }) {
+  const { anime } = useTheme()
+  const [on, setOn] = useState(soundEnabled)
+  useEffect(() => {
+    const off = onSoundChange(setOn)
+    return () => {
+      off()
+    }
+  }, [])
+  if (!anime) return null
+  return (
+    <button
+      type="button"
+      aria-pressed={on}
+      aria-label={on ? 'Turn sound off' : 'Turn sound on'}
+      title={on ? 'Sound on' : 'Sound off'}
+      data-sound="none"
+      onClick={() => setSoundEnabled(!on)}
+      className={`anime-toggle inline-flex h-11 w-11 items-center justify-center rounded-full ${className}`}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+        {on ? (
+          <>
+            <path d="M16.5 8.5a5 5 0 0 1 0 7" />
+            <path d="M19 6a8.5 8.5 0 0 1 0 12" />
+          </>
+        ) : (
+          <path d="M17 9l5 6M22 9l-5 6" />
+        )}
+      </svg>
+    </button>
+  )
+}
+
+/**
+ * Wraps the name: in anime mode, hovering (or tapping) it says "Emanyueru!" in an anime voice.
+ * Classic mode renders the children untouched.
+ */
+export function SayName({ children, className = '', hint = false, block = false }: { children: ReactNode; className?: string; hint?: boolean; block?: boolean }) {
+  const { anime } = useTheme()
+  const Tag = block ? 'div' : 'span'
+  if (!anime) return <Tag className={className}>{children}</Tag>
+  return (
+    <Tag
+      className={`say-name relative cursor-pointer ${className}`}
+      onPointerEnter={(e) => e.pointerType === 'mouse' && sayName()}
+      onClick={() => sayName()}
+      onFocus={() => sayName()}
+      tabIndex={0}
+      title="Hover to hear my name"
+    >
+      {children}
+      {hint && (
+        <span aria-hidden="true" className="say-hint pointer-events-none absolute -top-9 right-0 rounded-full border-[3px] border-[#1B1446] bg-[#FFE14D] px-3 py-1 text-[13px] font-bold text-[#1B1446] shadow-[3px_3px_0_#1B1446]">
+          🔊 Hover to hear my name
+        </span>
+      )}
+    </Tag>
   )
 }

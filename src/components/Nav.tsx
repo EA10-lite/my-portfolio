@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Logo, cvHref, LiveDot } from './ui'
+import { Logo, cvHref, LiveDot, mailto } from './ui'
 import { profile } from '../data/site'
 import { useLenis } from '../lib/smooth'
-import { AnimeToggle } from '../lib/theme'
+import { AnimeToggle, SoundToggle } from '../lib/theme'
 
 const links = [
   { to: '/work', label: 'Work' },
   { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
 ]
 
 export function Nav() {
@@ -95,15 +94,17 @@ export function Nav() {
               >
                 CV ↓
               </a>
+              <SoundToggle className="ml-1" />
               <AnimeToggle compact className="ml-1" />
-              <Link
-                to="/contact"
+              <a
+                href={mailto()}
                 className="label group ml-2 inline-flex min-h-11 items-center gap-2.5 rounded-lg bg-paper px-5 text-ink transition-colors hover:bg-accent"
               >
                 Let's talk
-              </Link>
+              </a>
             </div>
             <div className="flex items-center gap-2 md:hidden">
+            <SoundToggle />
             <AnimeToggle compact />
             <button
               type="button"
