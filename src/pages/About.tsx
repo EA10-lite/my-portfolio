@@ -1,4 +1,4 @@
-import { education, jobs, process, profile, skills } from '../data/site'
+import { education, jobs, openSource, process, profile, skills } from '../data/site'
 import { ButtonLink, DarkBand, LiveDot, cvHref, mailto } from '../components/ui'
 import { Reveal, WordsReveal } from '../components/motion'
 import { usePageTitle } from '../lib/usePageTitle'
@@ -112,6 +112,44 @@ export default function About() {
               </Reveal>
             ))}
           </ol>
+        </section>
+
+        <section aria-labelledby="oss-h" className="flex flex-wrap gap-12">
+          <div className="flex flex-[1_1_280px] flex-col gap-5">
+            <h2 id="oss-h" className="text-[clamp(34px,4vw,56px)] font-[450] leading-[1.05] tracking-[-0.03em]">
+              Open source
+            </h2>
+            <p className="max-w-[22rem] text-base leading-relaxed text-body">Merged work on other teams&rsquo; codebases, reviewed by their maintainers.</p>
+          </div>
+          <ul className="min-w-0 flex-[3_1_640px]">
+            {openSource.map((o) => (
+              <Reveal as="li" key={o.repo} className="grid gap-x-8 gap-y-4 border-t border-line py-8 md:grid-cols-[180px_minmax(0,1fr)]">
+                <span className="text-sm text-muted">{o.when}</span>
+                <div className="flex flex-col gap-3">
+                  <a href={o.url} target="_blank" rel="noreferrer" className="group w-fit text-2xl font-medium tracking-[-0.02em]">
+                    <span className="text-muted">{o.org}/</span>
+                    <span className="underline decoration-line decoration-1 underline-offset-[6px] transition-colors group-hover:decoration-accent">{o.repo}</span>
+                    <span aria-hidden="true" className="ml-1 text-muted transition-colors group-hover:text-accent">↗</span>
+                  </a>
+                  <p className="text-base leading-relaxed text-body">{o.summary}</p>
+                  <ul className="mt-1 flex flex-col">
+                    {o.items.map((it) => (
+                      <li key={it.text} className="border-t border-line/70 py-2.5 text-[15px]">
+                        <span>{it.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {o.tags.map((t) => (
+                      <span key={t} className="rounded-full bg-paper-2 px-3 py-1.5 text-sm">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </section>
 
         <section aria-labelledby="skills-h" className="flex flex-wrap gap-12">

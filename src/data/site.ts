@@ -189,6 +189,64 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: '360comms',
+    name: '360Comms',
+    kind: 'web',
+    role: 'Frontend developer',
+    year: '2025',
+    timeline: 'Nov 2025, redesigned Oct 2026',
+    platforms: 'Marketing website',
+    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion', 'React Router'],
+    tags: ['Marketing site', 'Enterprise', 'Live'],
+    line: 'The website for an enterprise communications platform used by banks, regulators and governments across Africa, live at 360comms.network.',
+    headline: 'A clearer front door for enterprise communications',
+    summary:
+      '360Comms sells voice, video, messaging and conferencing to organisations that can’t afford a dropped call. I built the website: home, features, solutions, help centre, blog, downloads and search. Later I redesigned it so the story reads on any screen.',
+    palette: { bg: '#155E8E', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0B2A43', accent: '#00F6FF', block: '#F1FAFF' },
+    screens: { phones: ['360comms-home', '360comms-sectors', '360comms-differentiators'], desktop: '360comms-desktop' },
+    video: { phone: '360comms-m', desktop: '360comms-site' },
+    links: [{ label: 'Visit 360comms.network', href: 'https://360comms.network' }],
+    caseStudy: {
+      brief: [
+        '360Comms needed a website that explains a broad platform (PBX systems, secure messaging, command and control) to buyers in government, telecoms and finance, and gets them to download the apps.',
+        'I built the whole site in React and TypeScript, from the page layouts to search, the help centre and the download page for mobile, desktop and the web.',
+      ],
+      built: [
+        {
+          title: 'Eight pages, one system',
+          body: 'Home, features, solutions, help centre, blog, downloads, search and an assistant page, all built from shared cards, headings and layouts so new content drops in without new code.',
+        },
+        {
+          title: 'Search',
+          body: 'A site-wide search overlay that closes on Escape and locks the page behind it, and a results page with tabs and sorting.',
+        },
+        {
+          title: 'Downloads',
+          body: 'One page for every way to get the product: the Loveworld App Store, Google Play and the App Store, plus desktop builds for macOS, Windows and Linux.',
+        },
+        {
+          title: 'Search engines and sharing',
+          body: 'Titles, descriptions, Open Graph and Twitter cards, a canonical URL and organisation structured data, so the site shows up properly in search results and link previews.',
+        },
+      ],
+      problem: {
+        title: 'A home page you couldn’t read on a phone',
+        challenge:
+          'The first version used banner images with the headline drawn into the picture. On a phone that became a thin strip of unreadable text, and search engines couldn’t read it at all. The same was true of the target sectors diagram, and text sizes jumped between 13px and 30px.',
+        approach:
+          'I rebuilt the hero and the sectors as real HTML: a headline, two clear actions and key numbers up front, then sectors as a readable list. I set one type scale for headings, body text and cards, and moved light text off the mid-blue background where it failed contrast.',
+        outcome:
+          'The home page now reads at any width, the main actions are visible on the first screen, and every word on it can be indexed.',
+      },
+      results: [
+        { value: '8', label: 'pages built from one set of shared components' },
+        { value: '3', label: 'app platforms on one download page: mobile, desktop and web' },
+        { value: 'Live', label: 'at 360comms.network' },
+        { value: '—', label: 'Add visits, downloads or sign-ups', placeholder: true },
+      ],
+    },
+  },
+  {
     slug: 'munkai',
     name: 'Munkai',
     kind: 'mobile',
@@ -481,6 +539,41 @@ export const jobs = [
     type: 'Contract',
     when: 'Apr – Aug 2022',
     what: 'Led the company website revamp, turning new design concepts into a responsive Next.js and Tailwind site.',
+  },
+]
+
+/** Open-source work: merged contributions to other people's projects (from the fork history). */
+export const openSource = [
+  {
+    repo: 'fluxapay',
+    org: 'MetroLogic',
+    url: 'https://github.com/MetroLogic/fluxapay/pulls?q=is%3Apr+author%3AEA10-lite',
+    when: 'Jan–Sep 2026',
+    summary: 'Features and fixes across the frontend and the backend.',
+    items: [
+      { text: 'Pricing page with plan cards, a comparison table and FAQ' },
+      { text: 'Settlement report page' },
+      { text: 'Fiat settlement engine on the backend' },
+      { text: 'Admin platform fees and configuration, plus follow-up fixes' },
+      { text: 'Privacy policy and terms pages' },
+      { text: 'Consistent API routes across services' },
+    ],
+    tags: ['TypeScript', 'React', 'Node.js', 'Prisma'],
+  },
+  {
+    repo: 'Disciplr',
+    org: 'Disciplr-Org',
+    url: 'https://github.com/Disciplr-Org',
+    when: 'Jul 2026',
+    summary: 'Fixes on both the API and the web app.',
+    items: [
+      { text: 'Required auth on the milestone approval status endpoint' },
+      { text: 'Reused the milestone record in the approve endpoint instead of fetching it twice' },
+      { text: 'Independent window anchors when filters change' },
+      { text: 'Restored the missing milestone validation export and fields' },
+      { text: 'Replaced hardcoded hex colours with theme tokens' },
+    ],
+    tags: ['TypeScript', 'Node.js', 'React'],
   },
 ]
 
