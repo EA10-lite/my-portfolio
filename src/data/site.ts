@@ -197,15 +197,14 @@ export const projects: Project[] = [
     timeline: 'Nov 2025, redesigned Oct 2026',
     platforms: 'Marketing website',
     stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion', 'React Router'],
-    tags: ['Marketing site', 'Enterprise', 'Live'],
-    line: 'The website for an enterprise communications platform used by banks, regulators and governments across Africa, live at 360comms.network.',
+    tags: ['Marketing site', 'Enterprise'],
+    line: 'The website for an enterprise communications platform used by banks, regulators and governments across Africa.',
     headline: 'A clearer front door for enterprise communications',
     summary:
       '360Comms sells voice, video, messaging and conferencing to organisations that can’t afford a dropped call. I built the website: home, features, solutions, help centre, blog, downloads and search. Later I redesigned it so the story reads on any screen.',
     palette: { bg: '#155E8E', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0B2A43', accent: '#00F6FF', block: '#F1FAFF' },
     screens: { phones: ['360comms-home', '360comms-sectors', '360comms-differentiators'], desktop: '360comms-desktop' },
     video: { phone: '360comms-m', desktop: '360comms-site' },
-    links: [{ label: 'Visit 360comms.network', href: 'https://360comms.network' }],
     caseStudy: {
       brief: [
         '360Comms needed a website that explains a broad platform (PBX systems, secure messaging, command and control) to buyers in government, telecoms and finance, and gets them to download the apps.',
@@ -241,7 +240,7 @@ export const projects: Project[] = [
       results: [
         { value: '8', label: 'pages built from one set of shared components' },
         { value: '3', label: 'app platforms on one download page: mobile, desktop and web' },
-        { value: 'Live', label: 'at 360comms.network' },
+        { value: '7', label: 'target sectors, from governments to NGOs' },
         { value: '—', label: 'Add visits, downloads or sign-ups', placeholder: true },
       ],
     },
@@ -360,6 +359,64 @@ export const projects: Project[] = [
         { value: '5', label: 'screen sizes checked, 320dp to iPad' },
         { value: '0', label: 'NativeWind left in migrated screens' },
         { value: '—', label: 'Add release or user numbers', placeholder: true },
+      ],
+    },
+  },
+  {
+    slug: 'kopa-landing',
+    name: 'Kopa Xclusive website',
+    kind: 'web',
+    role: 'Frontend developer',
+    year: '2026',
+    timeline: 'Oct 2026',
+    platforms: 'Marketing website',
+    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Server-side pre-rendering'],
+    tags: ['Fintech', 'Marketing site', 'Live'],
+    line: 'The public website for a shop-now-pay-later app for NYSC corps members and the vendors who serve them, live at kopaxclusive.com.ng.',
+    headline: 'One website for both sides of the counter',
+    summary:
+      'Kopa Xclusive gives corps members a spending limit at vendors near their PPA, repaid from their allowance. I built the website that explains it to both audiences: home, FAQs, contact, terms and privacy.',
+    palette: { bg: '#0E2414', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0F172A', accent: '#2FA84F', block: '#EAF0EB' },
+    screens: { phones: ['kopa-landing-home', 'kopa-landing-steps', 'kopa-landing-features'], desktop: 'kopa-landing-desktop' },
+    video: { phone: 'kopa-landing-m', desktop: 'kopa-landing' },
+    links: [{ label: 'Visit kopaxclusive.com.ng', href: 'https://www.kopaxclusive.com.ng' }],
+    caseStudy: {
+      brief: [
+        'Kopa has two kinds of users: corps members who want credit before allowance day, and vendors who want customers who can pay. The website had to speak to both without turning into two websites.',
+        'I built it in React and TypeScript, with every page pre-rendered to static HTML so it loads fast and search engines read the full content.',
+      ],
+      built: [
+        {
+          title: 'A switch between corps members and vendors',
+          body: 'How it works and the features each have a toggle, so a visitor sees the three steps and six features that apply to them, from the same page.',
+        },
+        {
+          title: 'Download links that know your phone',
+          body: 'On an iPhone the download button goes to the App Store, on Android to Google Play, and on a computer to a section with both. Everyone signs up in the same app and picks their role.',
+        },
+        {
+          title: 'FAQs, contact and legal pages',
+          body: '21 answers grouped by topic, a contact page for support and data requests, and full terms and a privacy policy in line with the Nigeria Data Protection Act.',
+        },
+        {
+          title: 'Pre-rendered for search',
+          body: 'A build step renders each page to its own HTML file with its own title, description, canonical URL, social tags and structured data, so the content is there before any JavaScript runs.',
+        },
+      ],
+      problem: {
+        title: 'Explaining credit without overpromising',
+        challenge:
+          'A lending product lives or dies on trust. Vague claims about rates, limits or user numbers would hurt it, and the copy had to match what the app really does.',
+        approach:
+          'I kept all copy in one data file and wrote it from the mobile app and backend: how limits are approved, how direct-debit repayment works, when vendors get paid. A trust section explains reviews, bank checks, PINs and disputes in plain words.',
+        outcome:
+          'Every claim on the site matches the product, and the team can change wording without touching the layout.',
+      },
+      results: [
+        { value: '5', label: 'pages, each pre-rendered to static HTML' },
+        { value: '2', label: 'audiences served by one page, with a toggle' },
+        { value: 'Live', label: 'at kopaxclusive.com.ng' },
+        { value: '—', label: 'Add visits, downloads or sign-ups', placeholder: true },
       ],
     },
   },
