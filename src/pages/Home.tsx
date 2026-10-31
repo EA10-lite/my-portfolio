@@ -6,7 +6,6 @@ import { Reveal, WordsReveal, useParallax } from '../components/motion'
 import { BrowserShot, PhoneShot } from '../components/mocks'
 import { ProjectCard } from '../components/ProjectCard'
 import { usePageTitle } from '../lib/usePageTitle'
-import { SayName } from '../lib/theme'
 import { useSiteReady } from '../components/Preloader'
 
 const ease = [0.16, 1, 0.3, 1] as const
@@ -48,7 +47,7 @@ export default function Home() {
               transition={{ duration: 0.8, ease, delay: 0.6 }}
             >
               <p className="max-w-[600px] text-[19px] leading-[1.5] text-soft-dark md:text-[21px]">{profile.intro.split(profile.name)[0]}
-                <SayName className="say-inline">{profile.name}</SayName>
+                <span className="anime-name">{profile.name}</span>
                 {profile.intro.split(profile.name)[1]}
               </p>
               <div className="flex flex-wrap gap-3">

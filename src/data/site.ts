@@ -305,22 +305,22 @@ export const projects: Project[] = [
     slug: 'loveping',
     name: 'Loveping',
     kind: 'mobile',
-    role: 'Mobile engineer, built version 1 and 2',
+    role: 'Sole engineer, from first commit to version 2',
     year: '2026',
     timeline: '2026',
     platforms: 'iOS · Android',
     stack: ['React Native', 'Expo Router', 'TypeScript', 'Zustand', 'Sentry'],
     tags: ['Mobile app', 'Rebuild', 'Accessibility'],
-    line: 'An app for couples that I built from scratch, then rebuilt as version 2 when its styling kept breaking.',
+    line: 'An app for couples I ran from start to finish as the only engineer, then rebuilt as version 2 when its styling kept breaking.',
     headline: 'Building an app, then rebuilding it without changing how it feels',
     summary:
-      'Loveping helps couples send love notes, call reminders and gift nudges. I built the first version end to end, then led Loveping 2.0: a full audit and a move from NativeWind to plain React Native styling, keeping the look users knew.',
+      'Loveping helps couples send love notes, call reminders and gift nudges. I was the only engineer from the first commit: I built version 1, then planned and shipped Loveping 2.0, a full audit and a move from NativeWind to plain React Native styling that kept the look users knew.',
     palette: { bg: '#0F3324', fg: '#FFFFFF', screen: '#05231A', ink: '#FFFFFF', accent: '#48D962', block: '#0F3324' },
     screens: { phones: ['loveping-home', 'loveping-messages', 'loveping-gifts'] },
     video: { phone: 'loveping' },
     caseStudy: {
       brief: [
-        'I built the first version of Loveping myself: the screens, navigation, stores and API integration, styled with NativeWind.',
+        'I was in charge of Loveping from start to finish as its sole engineer. I built the first version: the screens, navigation, stores and API integration, styled with NativeWind.',
         'As the app grew, the styling became the problem. Layout bugs kept coming back, and the floating tab bar behaved differently from phone to phone. Rather than keep patching, I planned version 2: the same features and the same look, on plain React Native StyleSheet.',
       ],
       built: [
@@ -330,7 +330,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Audit and plan for 2.0',
-          body: 'A full map of routes, stores, services and components, with risks and a step-by-step migration order the team could review.',
+          body: 'A full map of routes, stores, services and components, with risks and a step-by-step migration order.',
         },
         {
           title: 'Screen migration',
@@ -363,32 +363,36 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'kopa-landing',
-    name: 'Kopa Xclusive website',
+    slug: 'kopa-xclusive',
+    name: 'Kopa Xclusive',
     kind: 'web',
-    role: 'Frontend developer',
+    role: 'Frontend engineer',
     year: '2026',
-    timeline: 'Oct 2026',
-    platforms: 'Marketing website',
+    timeline: '2026',
+    platforms: 'Admin dashboard and website',
     stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Server-side pre-rendering'],
-    tags: ['Fintech', 'Marketing site', 'Live'],
-    line: 'The public website for a shop-now-pay-later app for NYSC corps members and the vendors who serve them, live at kopaxclusive.com.ng.',
-    headline: 'One website for both sides of the counter',
+    tags: ['Fintech', 'Dashboard', 'Marketing site', 'Live'],
+    line: 'The admin dashboard and public website for a shop-now-pay-later app for NYSC corps members, live at kopaxclusive.com.ng.',
+    headline: 'Making a credit product clear for corps members and controllable for ops',
     summary:
-      'Kopa Xclusive gives corps members a spending limit at vendors near their PPA, repaid from their allowance. I built the website that explains it to both audiences: home, FAQs, contact, terms and privacy.',
+      'Kopa Xclusive gives corps members a spending limit at vendors near their PPA, repaid from their allowance. I worked on the admin dashboard the operations team runs on, and built the public website that explains Kopa to corps members and vendors.',
     palette: { bg: '#0E2414', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0F172A', accent: '#2FA84F', block: '#EAF0EB' },
-    screens: { phones: ['kopa-landing-home', 'kopa-landing-steps', 'kopa-landing-features'], desktop: 'kopa-landing-desktop' },
-    video: { phone: 'kopa-landing-m', desktop: 'kopa-landing' },
+    screens: { phones: ['kopa-landing-home', 'kopa-landing-steps', 'kopa-landing-features'], desktop: 'kopa-dashboard' },
+    video: { phone: 'kopa-landing-m', desktop: 'kopa-dashboard' },
     links: [{ label: 'Visit kopaxclusive.com.ng', href: 'https://www.kopaxclusive.com.ng' }],
     caseStudy: {
       brief: [
-        'Kopa has two kinds of users: corps members who want credit before allowance day, and vendors who want customers who can pay. The website had to speak to both without turning into two websites.',
-        'I built it in React and TypeScript, with every page pre-rendered to static HTML so it loads fast and search engines read the full content.',
+        'Two audiences, two needs: corps members must understand exactly how credit and repayment work, and the operations team needs control over orders, vendors and withdrawals.',
+        'I worked on both sides. Behind the scenes, the admin dashboard the team runs Kopa from. In public, the website that has to speak to corps members and vendors without turning into two websites.',
       ],
       built: [
         {
-          title: 'A switch between corps members and vendors',
-          body: 'How it works and the features each have a toggle, so a visitor sees the three steps and six features that apply to them, from the same page.',
+          title: 'Admin dashboard',
+          body: 'An audit of the admin dashboard with concrete improvements and the missing actions the team needed day to day, plus a 30-day plan across web and mobile with priorities, checkpoints and risks.',
+        },
+        {
+          title: 'A website for both sides of the counter',
+          body: 'How it works and the features each have a switch between corps members and vendors, so every visitor sees the steps and features that apply to them, from the same page.',
         },
         {
           title: 'Download links that know your phone',
@@ -404,58 +408,6 @@ export const projects: Project[] = [
         },
       ],
       problem: {
-        title: 'Explaining credit without overpromising',
-        challenge:
-          'A lending product lives or dies on trust. Vague claims about rates, limits or user numbers would hurt it, and the copy had to match what the app really does.',
-        approach:
-          'I kept all copy in one data file and wrote it from the mobile app and backend: how limits are approved, how direct-debit repayment works, when vendors get paid. A trust section explains reviews, bank checks, PINs and disputes in plain words.',
-        outcome:
-          'Every claim on the site matches the product, and the team can change wording without touching the layout.',
-      },
-      results: [
-        { value: '5', label: 'pages, each pre-rendered to static HTML' },
-        { value: '2', label: 'audiences served by one page, with a toggle' },
-        { value: 'Live', label: 'at kopaxclusive.com.ng' },
-        { value: '—', label: 'Add visits, downloads or sign-ups', placeholder: true },
-      ],
-    },
-  },
-  {
-    slug: 'kopa-xclusive',
-    name: 'Kopa Xclusive',
-    kind: 'web',
-    role: 'Frontend engineer',
-    year: '2026',
-    timeline: '2026',
-    platforms: 'Web',
-    stack: ['React', 'TypeScript', 'Admin tools'],
-    tags: ['Fintech', 'Dashboard'],
-    line: 'Operations dashboard and landing page work for a buy-now-pay-later platform for corps members.',
-    headline: 'Making a credit product clear for corps members and controllable for ops',
-    summary:
-      'Kopa Xclusive lets NYSC corps members buy from vendors now and repay a month later. I worked on the admin dashboard and designed the public landing page.',
-    palette: { bg: '#008751', fg: '#FFFFFF', screen: '#FFFFFF', ink: '#0A0E11', accent: '#008751', block: '#E3F1EA' },
-    screens: { phones: [], desktop: 'kopa-dashboard' },
-    video: { desktop: 'kopa-dashboard' },
-    caseStudy: {
-      brief: [
-        'Two audiences, two needs: corps members must understand exactly how credit and repayment work, and the operations team needs control over orders, vendors and withdrawals.',
-      ],
-      built: [
-        {
-          title: 'Dashboard review',
-          body: 'An audit of the admin dashboard with concrete improvements and the missing actions the team needed day to day.',
-        },
-        {
-          title: 'Landing page',
-          body: 'Three design directions for the public site, each built around the real product rules rather than vague promises.',
-        },
-        {
-          title: 'Delivery plan',
-          body: 'A 30-day plan across web and mobile with priorities, checkpoints and risks.',
-        },
-      ],
-      problem: {
         title: 'Explaining money rules without fine print',
         challenge:
           'Early copy said users “pay when allowance lands”, but Kopa actually debits one month after each purchase. Getting this wrong would erode trust fast.',
@@ -464,9 +416,10 @@ export const projects: Project[] = [
         outcome: 'Landing page copy that matches how the product really works, in plain language corps members use.',
       },
       results: [
-        { value: '3', label: 'landing page directions' },
-        { value: '30', label: 'day build plan' },
-        { value: '—', label: 'Add launch or usage numbers', placeholder: true },
+        { value: '5', label: 'website pages, each pre-rendered to static HTML' },
+        { value: '2', label: 'audiences served by one page, with a switch' },
+        { value: '30', label: 'day build plan across web and mobile' },
+        { value: 'Live', label: 'at kopaxclusive.com.ng' },
       ],
     },
   },

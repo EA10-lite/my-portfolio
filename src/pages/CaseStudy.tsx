@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { projects } from '../data/site'
+import { posts } from '../data/posts'
 import { DarkBand, Tag } from '../components/ui'
 import { Reveal, WordsReveal, useParallax, useScaleIn } from '../components/motion'
 import { BrowserShot, PhoneShot } from '../components/mocks'
@@ -40,6 +41,7 @@ export default function CaseStudy() {
   const cs = p.caseStudy
   const phones = p.screens.phones
   const storeLinks = (p.links ?? []).filter((l) => l.href)
+  const related = posts.filter((x) => x.project === p.slug)
 
   return (
     <>
@@ -253,6 +255,21 @@ export default function CaseStudy() {
                 ))}
               </div>
             )}
+            {related.map((post) => (
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="group mt-4 flex items-center justify-between gap-4 rounded-2xl border border-line p-6 transition-colors hover:border-ink"
+              >
+                <span className="flex flex-col gap-1">
+                  <span className="text-sm text-muted">From the blog · {post.readMinutes} min read</span>
+                  <span className="text-xl font-medium tracking-[-0.01em]">{post.title}</span>
+                </span>
+                <span aria-hidden="true" className="text-2xl transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            ))}
           </section>
         </article>
       </div>

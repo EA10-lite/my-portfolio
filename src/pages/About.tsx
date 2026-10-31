@@ -2,7 +2,6 @@ import { education, jobs, openSource, process, profile, skills } from '../data/s
 import { ButtonLink, DarkBand, LiveDot, cvHref, mailto } from '../components/ui'
 import { Reveal, WordsReveal } from '../components/motion'
 import { usePageTitle } from '../lib/usePageTitle'
-import { SayName } from '../lib/theme'
 
 export default function About() {
   usePageTitle('About', 'About Emmanuel Anyigor, a frontend and mobile engineer in Lagos with four years of React Native, React and Next.js work for banks, fintechs, travel and consumer products.')
@@ -12,13 +11,11 @@ export default function About() {
       <DarkBand>
         <div className="container-x flex flex-wrap items-end gap-12 pb-16 pt-32 md:pb-20 md:pt-40">
           <div className="flex min-w-0 flex-[3_1_560px] flex-col gap-8">
-            <SayName block>
             <WordsReveal
               immediate
               text="I'm Emmanuel, a frontend and mobile engineer in Lagos."
               className="text-[clamp(40px,5.6vw,84px)] font-[450] leading-[1] tracking-[-0.035em]"
             />
-            </SayName>
             <Reveal delay={0.3} className="flex max-w-2xl flex-col gap-4 text-lg leading-relaxed text-soft-dark">
               <p>
                 For more than four years I've built products in React, Next.js and React Native for banking, fintech, travel and consumer

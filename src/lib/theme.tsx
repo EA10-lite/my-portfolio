@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
-import { installUiSounds, onSoundChange, sayName, setSoundEnabled, settle, soundEnabled, sparkle } from './sound'
+import { installUiSounds, onSoundChange, setSoundEnabled, settle, soundEnabled, sparkle } from './sound'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 type Theme = 'classic' | 'anime'
@@ -185,32 +185,5 @@ export function SoundToggle({ className = '' }: { className?: string }) {
         )}
       </svg>
     </button>
-  )
-}
-
-/**
- * Wraps the name: in anime mode, hovering (or tapping) it says "Emanyueru!" in an anime voice.
- * Classic mode renders the children untouched.
- */
-export function SayName({ children, className = '', hint = false, block = false }: { children: ReactNode; className?: string; hint?: boolean; block?: boolean }) {
-  const { anime } = useTheme()
-  const Tag = block ? 'div' : 'span'
-  if (!anime) return <Tag className={className}>{children}</Tag>
-  return (
-    <Tag
-      className={`say-name relative cursor-pointer ${className}`}
-      onPointerEnter={(e) => e.pointerType === 'mouse' && sayName()}
-      onClick={() => sayName()}
-      onFocus={() => sayName()}
-      tabIndex={0}
-      title="Hover to hear my name"
-    >
-      {children}
-      {hint && (
-        <span aria-hidden="true" className="say-hint pointer-events-none absolute -top-9 right-0 rounded-full border-[3px] border-[#1B1446] bg-[#FFE14D] px-3 py-1 text-[13px] font-bold text-[#1B1446] shadow-[3px_3px_0_#1B1446]">
-          🔊 Hover to hear my name
-        </span>
-      )}
-    </Tag>
   )
 }

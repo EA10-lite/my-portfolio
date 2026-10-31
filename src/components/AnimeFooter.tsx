@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { profile } from '../data/site'
 import { footerLinks, useBackToTop, useLagosTime } from '../lib/footer'
-import { SayName, SoundToggle } from '../lib/theme'
+import { SoundToggle } from '../lib/theme'
 import { ding } from '../lib/sound'
 
 const INK = '#120A24'
@@ -257,9 +257,7 @@ export function AnimeFooter({ onContact, toggle }: { onContact: boolean; toggle:
         </div>
 
         <div className="mt-[min(10vw,90px)]" aria-hidden="false">
-          <SayName block hint className="group">
-            <AnimeWordmark text={profile.name.split(' ')[0]} />
-          </SayName>
+          <AnimeWordmark text={profile.name.split(' ')[0]} />
         </div>
       </div>
     </div>

@@ -253,15 +253,12 @@ html.lenis body {
 
 :root[data-theme='anime'] ::selection { background: var(--anime-yellow); color: var(--anime-ink); }
 
-/* Hover-to-hear name (anime mode) */
-:root[data-theme='anime'] .say-inline {
+/* The name, highlighted in anime mode */
+:root[data-theme='anime'] .anime-name {
   color: #fff;
   font-weight: 700;
   background: linear-gradient(transparent 62%, rgb(255 79 163 / 0.55) 62%);
 }
-.say-name .say-hint { opacity: 0; transform: translateY(4px) rotate(-2deg); transition: opacity 0.2s, transform 0.2s; }
-.say-name:hover .say-hint, .say-name:focus-visible .say-hint { opacity: 1; transform: translateY(0) rotate(-2deg); }
-@media (hover: none) { .say-name .say-hint { opacity: 1; transform: none; } }
 
 /* Scroll-scaled cards: keep rounded clipping steady (incl. Safari with video) and never transition transform */
 [data-scale-in] {
